@@ -1,0 +1,67 @@
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+    $colors: (
+        'white': #ffffff,
+        'black': #000000,
+        'primary': (
+            'base': #484baf,
+        ),
+        'success': (
+            'base': #4FBD95,
+        ),
+        'warning': (
+            'base': #e6a23c,
+        ),
+        'danger': (
+            'base': #f56c6c,
+        ),
+        'error': (
+            'base': #f56c6c,
+        ),
+        'info': (
+            'base': #d4d4d4,
+        )
+    ),
+    $pagination: (
+        'hover-color': #484baf,
+    )
+);
+
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+
+// Screens
+$xs: 480px !default;
+$s: 768px;
+$m: 1024px;
+$l: 1200px;
+$xl: 1440px;
+$xxl: 1600px;
+
+// Colors
+$white: #ffffff;
+$blue: #00315D;
+$indigo: #484BAF;
+$green: #32CD99;
+$gray: #757575;
+$yellow: #FECD42;
+$black: #000000;
+$dark: #212121;
+$light-gray: #C4C4C4;
+$light-indigo: #ededf7;
+$white-second: #fafafa;
+$light-blue: #66839d;
+$maroon: #941a49;
+$dark-middle: #333333;
+$graphite: #999999;
+
+// Fonts
+$avant-font-family: 'ITCAvantGardeStd';
+$avant-font-path: "/fonts/avant";
+$avant: $avant-font-family, Helvetica, Arial, sans-serif;
+
+$avenir-next-font-family: 'AvenirNextCyr';
+$avenir-next-font-path: "/fonts/avenir-next";
+$avenir-next: $avenir-next-font-family, Helvetica, Arial, sans-serif;

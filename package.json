@@ -1,0 +1,51 @@
+{
+    "private": true,
+    "name": "larave-vue3-spa-skeleton",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "lint": "./node_modules/.bin/eslint -c .eslintrc.js --ignore-path .gitignore resources/js/** --ext .js,.vue --max-warnings=0",
+        "lint-fix": "./node_modules/.bin/eslint -c .eslintrc.js --ignore-path .gitignore resources/js/** --ext .js,.vue --fix"
+    },
+    "lint-staged": {
+        "*.{js,vue}": [
+            "./node_modules/.bin/eslint -c .eslintrc.js --fix --max-warnings=0"
+        ],
+        "*.php": [
+            "vendor/bin/php-cs-fixer fix --diff --config=.php-cs-fixer.dist.php"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "devDependencies": {
+        "@originjs/vite-plugin-require-context": "^1.0.9",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^7.20.0",
+        "eslint-plugin-vue": "^7.6.0",
+        "husky": "4",
+        "lint-staged": "11.1.2",
+        "sass": "^1.57.1"
+    },
+    "dependencies": {
+        "@element-plus/icons-vue": "^2.0.10",
+        "@fortawesome/fontawesome-free": "^6.2.1",
+        "@vitejs/plugin-vue": "^4.0.0",
+        "@vue/compiler-sfc": "^3.2.29",
+        "@websanova/vue-auth": "^4.2.0",
+        "axios": "^1.1.2",
+        "dayjs": "^1.10.7",
+        "element-plus": "^2.2.27",
+        "laravel-vite-plugin": "^0.7.2",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "resolve-url-loader": "4.0.0",
+        "vite": "^4.0.0",
+        "vue": "3.2",
+        "vue-axios": "^3.4.0",
+        "vue-i18n": "^9.2.0-beta.26",
+        "vue-router": "^4.0.12"
+    }
+}

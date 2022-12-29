@@ -1,0 +1,44 @@
+<template>
+    <div>
+        <h1>{{ $t('auth.register.title') }}</h1>
+        <register-form
+            :loading="loading"
+            :errors="authErrors"
+            @submit="onSubmit"
+        />
+    </div>
+</template>
+
+<script>
+import RegisterForm from './RegisterForm.vue'
+
+export default {
+    name: 'Register',
+    components: {RegisterForm},
+    data() {
+        return {
+            loading: false,
+            authErrors: {},
+        }
+    },
+    methods: {
+        onSubmit(signUpFormData) {
+            this.$auth
+                .register({
+                    data: signUpFormData,
+                })
+                .then(response => {
+                    if(response.data.status) {
+                        this.$message.success(response.data.status)
+                    } else {
+                        this.$message.success(this.$t('auth.register.success'))
+                    }
+                }, error => {
+                    if (error.response.status === 422)
+                        this.authErrors = error.response.data.errors
+                })
+                .finally(() => this.loading = false)
+        },
+    }
+}
+</script>

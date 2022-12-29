@@ -1,0 +1,16 @@
+import DummySingularList from './components/DummySingularList'
+import DummySingularView from './components/DummySingularView'
+
+export const routes = [
+    {
+        path: '/dummyVariablePlural',
+        name: 'DummyPlural',
+        component: DummySingularList,
+    },
+    {
+        path: '/dummyVariablePlural/:id',
+        name: 'Show DummySingular',
+        component: DummySingularView,
+        hidden: true
+    },
+]

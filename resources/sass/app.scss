@@ -1,0 +1,13 @@
+// Variables
+@use 'variables';
+
+@use "~element-plus/theme-chalk/src/index.scss";
+
+// Font Awesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+// Custom Styles
+@import 'transitions';
+@import 'style';

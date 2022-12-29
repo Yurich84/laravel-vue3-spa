@@ -1,0 +1,95 @@
+<?php
+
+namespace DummyRootNamespaceModules\DummySingular\Controllers;
+
+use DummyRootNamespaceHttp\Controllers\Controller;
+use DummyRootNamespaceModels\DummySingular;
+use DummyRootNamespaceModules\DummySingular\Requests\DummySingularRequest;
+use DummyRootNamespaceModules\DummySingular\Resources\DummySingularResource;
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+
+class DummySingularController extends Controller
+{
+    /**
+     * @param Request $request
+     * @return AnonymousResourceCollection
+     */
+    public function index(Request $request)
+    {
+        [$column, $order] = explode(',', $request->input('sortBy', 'id,asc'));
+        $pageSize = (int) $request->input('pageSize', 10);
+
+        $resource = DummySingular::query()
+            ->when($request->filled('search'), function (Builder $q) use ($request) {
+                $q->where(DummySingular::COLUMN_NAME, 'like', '%'.$request->search.'%');
+            })
+            ->orderBy($column, $order)->paginate($pageSize);
+
+        return DummySingularResource::collection($resource);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @param DummySingularRequest $request
+     * @return JsonResponse
+     */
+    public function store(DummySingularRequest $request)
+    {
+        $data = $request->validated();
+        $dummyVariableSingular = new DummySingular($data);
+        $dummyVariableSingular->save();
+
+        return response()->json([
+            'type' => self::RESPONSE_TYPE_SUCCESS,
+            'message' => 'Successfully created',
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param DummySingular $dummyVariableSingular
+     * @return DummySingularResource
+     */
+    public function show(DummySingular $dummyVariableSingular)
+    {
+        return new DummySingularResource($dummyVariableSingular);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param DummySingularRequest $request
+     * @param DummySingular $dummyVariableSingular
+     * @return JsonResponse
+     */
+    public function update(DummySingularRequest $request, DummySingular $dummyVariableSingular)
+    {
+        $data = $request->validated();
+        $dummyVariableSingular->fill($data)->save();
+
+        return response()->json([
+            'type' => self::RESPONSE_TYPE_SUCCESS,
+            'message' => 'Successfully updated',
+        ]);
+    }
+
+    /**
+     * @param DummySingular $dummyVariableSingular
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function destroy(DummySingular $dummyVariableSingular)
+    {
+        $dummyVariableSingular->delete();
+
+        return response()->json([
+            'type' => self::RESPONSE_TYPE_SUCCESS,
+            'message' => 'Successfully deleted',
+        ]);
+    }
+}
