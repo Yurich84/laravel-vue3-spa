@@ -1,6 +1,8 @@
 name: Check & fix styling
 
-on: [push]
+on:
+  push:
+    branches: [ todo_fix_this ]
 
 jobs:
     php-cs-fixer:
@@ -11,7 +13,7 @@ jobs:
               uses: actions/checkout@v2
               with:
                   ref: ${{ github.head_ref }}
-                  
+
             - name: Install Dependencies
               run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 

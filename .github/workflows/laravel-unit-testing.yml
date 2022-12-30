@@ -2,7 +2,7 @@ name: Laravel
 
 on:
   push:
-    branches: [ master ]
+    branches: [ todo_fix_this ]
 
 jobs:
   laravel-tests:
