@@ -1,7 +1,7 @@
 import Index        from './components/Index.vue'
 import NotFound     from './components/NotFound.vue'
 import Welcome      from './components/Welcome.vue'
-import Home         from './components/Home.vue'
+import Base         from './components/Base.vue'
 import auth         from '../modules/auth/routes_auth'
 
 const autoImportModules = import.meta.glob('../modules/*/routes.js', { import: 'routes' })
@@ -16,7 +16,7 @@ for (const path in autoImportModules) {
 export const routes = [
     {
         path: '/admin',
-        component: Home,
+        component: Base,
         meta: {auth: true},
         children: [
             ...moduleRoutes,

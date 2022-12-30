@@ -94,7 +94,7 @@ export default {
                 width: 40px;
                 height: 40px;
                 border-radius: 20px;
-                margin: 10px 0px 10px 10px;
+                margin: 10px 0 10px 10px;
                 float: right;
             }
         }
@@ -130,7 +130,7 @@ export default {
     }
 
     .tools {
-        padding: 0px 23px;
+        padding: 0 23px;
         width: 14px;
         height: 60px;
         line-height: 60px;

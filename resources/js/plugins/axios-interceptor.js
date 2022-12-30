@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {ElMessage} from 'element-plus'
-import i18n from '@/bootstrap/i18n'
+import i18n from '@/plugins/i18n'
 
 let token = document.head.querySelector('meta[name="csrf-token"]')
 axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content

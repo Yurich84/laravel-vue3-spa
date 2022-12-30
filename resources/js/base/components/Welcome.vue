@@ -24,13 +24,6 @@
     </main>
 </template>
 
-<script>
-
-export default {
-
-}
-</script>
-
 <style lang="scss" scoped>
     html, body {
         background-color: #fff;

@@ -1,4 +1,4 @@
-import {setI18nLanguage} from '@/bootstrap/i18n'
+import {setI18nLanguage} from '@/plugins/i18n'
 
 import {createAuth} from '@websanova/vue-auth'
 import driverAuthBearer from '@websanova/vue-auth/dist/drivers/auth/bearer.esm.js'
