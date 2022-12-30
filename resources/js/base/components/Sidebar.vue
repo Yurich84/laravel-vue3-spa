@@ -5,9 +5,6 @@
             class="el-menu-vertical-demo"
             router
             :collapse="coreIsCollapsed"
-            @open="handleOpen"
-            @close="handleClose"
-            @select="handleSelect"
         >
             <template v-for="(item, index) in admin_routes">
                 <el-menu-item
@@ -17,16 +14,16 @@
                     :index="item.path"
                 >
                     <i :class="item.icon || 'fa fa-th-large'" />
-                    <span slot="title">{{ $t(item.name.toString()) }}</span>
+                    <span>{{ $t(item.name.toString()) }}</span>
                 </el-menu-item>
                 <el-sub-menu
                     v-if="item.children && !item.hidden"
                     :key="index"
                     :index="index+''"
                 >
-                    <template slot="title">
+                    <template #title>
                         <i :class="item.icon || 'fa fa-th-large'" />
-                        <span slot="title">{{ item.name }}</span>
+                        <span>{{ item.name }}</span>
                     </template>
                     <template v-for="child in item.children">
                         <el-menu-item
@@ -35,7 +32,8 @@
                             :route="child"
                             :index="child.path"
                         >
-                            <span slot="title">{{ child.name }}</span>
+                            <i :class="item.icon || 'fa fa-th-large'" />
+                            <span>{{ child.name }}</span>
                         </el-menu-item>
                     </template>
                 </el-sub-menu>
@@ -44,39 +42,15 @@
     </aside>
 </template>
 
-<script>
-export default {
-    name: 'Sidebar',
-    components: {},
-    data: () => ({
+<script setup>
+import {computed} from 'vue'
+import {useRouter} from 'vue-router'
 
-    }),
-    methods: {
-        menuItemIsAvailable(item) {
-            let allowed = !item.meta.hidden
-            if (allowed  && item.meta && item.meta.auth) {
-                allowed = this.$auth.check(item.meta.auth)
-            }
-            return allowed
-        },
-        handleOpen() {
-            //console.log('handleOpen');
-        },
-        handleClose() {
-            //console.log('handleClose');
-        },
-        handleSelect: function (a, b) {
-        },
-    },
-    computed: {
-        coreIsCollapsed() {
-            return false
-        },
-        admin_routes() {
-            return this.$router.options.routes[0].children
-        }
-    }
-}
+const router = useRouter()
+
+const coreIsCollapsed = computed(() => false)
+
+const admin_routes = computed(() => router.options.routes[0].children[0].children)
 </script>
 
 <style lang="scss" scoped>
@@ -118,6 +92,13 @@ aside {
     li.el-menu-item {
         span {
             margin-left: 10px;
+        }
+    }
+    .el-sub-menu {
+        &__title {
+            span {
+                margin-left: 10px;
+            }
         }
     }
 }

@@ -1,9 +1,26 @@
 <template>
     <main
         role="main"
-        class="flex-center position-ref full-height auth-page--bg-gradient"
+        class="container flex-center position-ref full-height"
     >
-        <child />
+        <div class="top-right links">
+            <template v-if="$auth.check()">
+                <router-link :to="{ name: 'Dashboard' }">
+                    {{ $t('home') }}
+                </router-link>
+            </template>
+            <template v-else>
+                <router-link :to="{ name: 'Login' }">
+                    {{ $t('auth.login.title') }}
+                </router-link>
+                <router-link :to="{ name: 'Register' }">
+                    {{ $t('auth.register.title') }}
+                </router-link>
+            </template>
+        </div>
+        <div class="text-center content">
+            <child />
+        </div>
     </main>
 </template>
 

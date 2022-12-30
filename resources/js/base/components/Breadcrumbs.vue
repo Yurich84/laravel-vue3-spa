@@ -4,7 +4,7 @@
         class="breadcrumb-inner"
     >
         <el-breadcrumb-item
-            v-for="item in $route.matched"
+            v-for="item in breadcrumbs"
             :key="item.path"
         >
             {{ $t(item.name || 'Home') }}
@@ -12,12 +12,16 @@
     </el-breadcrumb>
 </template>
 
-<script>
-export default {
-    name: 'Breadcrumbs',
-    components: {},
-    data() {
-        return {}
-    },
-}
+<script setup>
+import {computed} from 'vue'
+import {useRoute} from 'vue-router'
+
+const route = useRoute()
+
+const breadcrumbs = computed(() => {
+    const routes = route.matched
+    routes.shift()
+
+    return routes
+})
 </script>

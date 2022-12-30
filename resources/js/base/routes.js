@@ -1,8 +1,7 @@
 import Index        from './components/Index.vue'
 import NotFound     from './components/NotFound.vue'
-import Welcome      from './components/Welcome.vue'
 import Base         from './components/Base.vue'
-import auth         from '../modules/auth/routes_auth'
+import Child        from './components/Child.vue'
 
 const autoImportModules = import.meta.glob('../modules/*/routes.js', { import: 'routes' })
 
@@ -15,29 +14,36 @@ for (const path in autoImportModules) {
 
 export const routes = [
     {
-        path: '/admin',
-        component: Base,
-        meta: {auth: true},
-        children: [
-            ...moduleRoutes,
-        ]
-    },
-    {
         path: '/',
-        component: Welcome,
+        component: Base,
         children: [
+            {
+                path: 'admin', // TODO fix this
+                name: 'Home',
+                component: Child,
+                redirect: 'Dashboard',
+                meta: {auth: true},
+                children: [
+                    ...moduleRoutes,
+                ]
+            },
             {
                 path: '/',
                 component: Index,
                 name: 'index',
+                meta: {layout: 'Welcome'},
+                hidden: true,
             },
-            ...auth,
             {
-                path: '*',
+                path: ':pathMatch(.*)*',
                 component: NotFound,
-                name: 'not_found'
+                name: '404',
+                meta: {
+                    layout: 'Welcome',
+                    auth: undefined
+                },
             }
         ]
-    },
+    }
 ]
 
