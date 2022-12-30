@@ -17,7 +17,6 @@ const router = createRouter({
     }
 })
 
-
 export default (app) => {
     app.router = router
 
