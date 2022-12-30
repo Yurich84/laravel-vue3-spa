@@ -18,10 +18,9 @@ export const routes = [
         component: Base,
         children: [
             {
-                path: 'admin', // TODO fix this
+                path: 'admin',
                 name: 'Home',
                 component: Child,
-                redirect: 'Dashboard',
                 meta: {auth: true},
                 children: [
                     ...moduleRoutes,

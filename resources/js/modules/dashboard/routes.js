@@ -2,7 +2,7 @@ import Dashboard from './components/Dashboard.vue'
 
 export const routes = [
     {
-        path: 'dashboard',
+        path: '',
         name: 'Dashboard',
         component: Dashboard,
         icon: 'fa fa-th-large'

@@ -6,7 +6,7 @@ import Child from '@/base/components/Child.vue'
 
 export const routes = [
     {
-        path: '',
+        path: 'email',
         name: 'Auth',
         component: Child,
         meta: {
@@ -32,12 +32,12 @@ export const routes = [
                 },
             },
             {
-                path: 'email/verify/:user',
+                path: 'verify/:user',
                 component: VerifyEmail,
                 name: 'Verification email'
             },
             {
-                path: 'email/resend/verification',
+                path: 'resend/verification',
                 component: ResendVerification,
                 name: 'Verification resend'
             }
