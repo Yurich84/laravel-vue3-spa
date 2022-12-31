@@ -1,44 +1,36 @@
 <template>
     <el-header class="header">
-        <el-row>
-            <el-col
-                :span="10"
-                class="logo"
-                :class="coreIsCollapsed?'logo-collapse-width':'logo-width'"
-            >
-                {{ coreIsCollapsed ? '' : $config.appName }}
-            </el-col>
-            <el-col :span="6">
-                <div
-                    class="tools"
-                    @click.prevent="collapse"
-                >
-                    <i class="fa fa-align-justify" />
-                </div>
-            </el-col>
-            <el-col
-                :span="8"
-                class="userinfo"
-            >
-                <span>{{ sysUserName }}</span>
-                <el-dropdown>
-                    <span class="el-dropdown-link userinfo-inner">
-                        <img :src="sysUserAvatar">
-                    </span>
-                    <template #dropdown>
-                        <el-dropdown-menu>
-                            <el-dropdown-item
-                                divided
-                                @click.native="logout"
-                            >
-                                {{ $t('auth.logout.title') }}
-                            </el-dropdown-item>
-                        </el-dropdown-menu>
-                    </template>
-                </el-dropdown>
-            </el-col>
-        </el-row>
-
+        <div
+            class="logo"
+            :class="coreIsCollapsed?'logo-collapse-width':'logo-width'"
+        >
+            {{ coreIsCollapsed ? '' : $config.appName }}
+        </div>
+        <div class="tools">
+            <div @click.prevent="collapse">
+                <i class="fa fa-align-justify" />
+            </div>
+        </div>
+        <div
+            class="userinfo"
+        >
+            <span>{{ sysUserName }}</span>
+            <el-dropdown>
+                <span class="el-dropdown-link userinfo-inner">
+                    <img :src="sysUserAvatar">
+                </span>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item
+                            divided
+                            @click.native="logout"
+                        >
+                            {{ $t('auth.logout.title') }}
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
+        </div>
     </el-header>
 </template>
 
@@ -84,11 +76,39 @@ export default {
     color: #fff;
     --el-header-padding: 0px !important;
 
+    .logo {
+        float: left;
+        height: 60px;
+        font-size: 22px;
+        padding:0 20px;
+        border-color: rgba(238, 241, 146, 0.3);
+        border-right-width: 1px;
+        border-right-style: solid;
+    }
+
+    .logo-width {
+        width: 190px;
+    }
+
+    .logo-collapse-width {
+        width: 65px
+    }
+
+    .tools {
+        float: left;
+        div {
+            padding: 0 23px;
+            width: 14px;
+            height: 60px;
+            line-height: 60px;
+            cursor: pointer;
+        }
+    }
+
     .userinfo {
+        float: right;
         text-align: right;
         padding-right: 35px;
-        float: right;
-
         .userinfo-inner {
             cursor: pointer;
             color: #fff;
@@ -101,43 +121,6 @@ export default {
                 float: right;
             }
         }
-    }
-
-    .logo {
-        //width:230px;
-        height: 60px;
-        font-size: 22px;
-        padding-left: 20px;
-        padding-right: 20px;
-        border-color: rgba(238, 241, 146, 0.3);
-        border-right-width: 1px;
-        border-right-style: solid;
-
-        img {
-            width: 40px;
-            float: left;
-            margin: 10px 10px 10px 18px;
-        }
-
-        .txt {
-            color: #fff;
-        }
-    }
-
-    .logo-width {
-        max-width: 230px;
-    }
-
-    .logo-collapse-width {
-        width: 65px
-    }
-
-    .tools {
-        padding: 0 23px;
-        width: 14px;
-        height: 60px;
-        line-height: 60px;
-        cursor: pointer;
     }
 }
 </style>
