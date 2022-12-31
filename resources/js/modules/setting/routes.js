@@ -5,5 +5,6 @@ export const routes = [
         path: 'profile',
         name: 'Profile',
         component: Profile,
+        icon: 'fa-solid fa-address-card'
     },
 ]

@@ -1,41 +1,44 @@
 <template>
     <el-header class="header">
-        <el-col
-            :span="10"
-            class="logo"
-            :class="coreIsCollapsed?'logo-collapse-width':'logo-width'"
-        >
-            {{ coreIsCollapsed ? '' : $config.appName }}
-        </el-col>
-        <el-col :span="10">
-            <div
-                class="tools"
-                @click.prevent="collapse"
+        <el-row>
+            <el-col
+                :span="10"
+                class="logo"
+                :class="coreIsCollapsed?'logo-collapse-width':'logo-width'"
             >
-                <i class="fa fa-align-justify" />
-            </div>
-        </el-col>
-        <el-col
-            :span="4"
-            class="userinfo"
-        >
-            <span>{{ sysUserName }}</span>
-            <el-dropdown>
-                <span class="el-dropdown-link userinfo-inner">
-                    <img :src="sysUserAvatar">
-                </span>
-                <template #dropdown>
-                    <el-dropdown-menu>
-                        <el-dropdown-item
-                            divided
-                            @click.native="logout"
-                        >
-                            {{ $t('auth.logout.title') }}
-                        </el-dropdown-item>
-                    </el-dropdown-menu>
-                </template>
-            </el-dropdown>
-        </el-col>
+                {{ coreIsCollapsed ? '' : $config.appName }}
+            </el-col>
+            <el-col :span="6">
+                <div
+                    class="tools"
+                    @click.prevent="collapse"
+                >
+                    <i class="fa fa-align-justify" />
+                </div>
+            </el-col>
+            <el-col
+                :span="8"
+                class="userinfo"
+            >
+                <span>{{ sysUserName }}</span>
+                <el-dropdown>
+                    <span class="el-dropdown-link userinfo-inner">
+                        <img :src="sysUserAvatar">
+                    </span>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item
+                                divided
+                                @click.native="logout"
+                            >
+                                {{ $t('auth.logout.title') }}
+                            </el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
+            </el-col>
+        </el-row>
+
     </el-header>
 </template>
 
@@ -122,7 +125,7 @@ export default {
     }
 
     .logo-width {
-        width: 230px;
+        max-width: 230px;
     }
 
     .logo-collapse-width {
