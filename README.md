@@ -27,8 +27,8 @@ The main goals of the project are:
 ## Extensions
 
 - BackEnd: [Laravel 9](https://laravel.com/)
-- FrontEnd: [Vue](https://vuejs.org) + [VueRouter](https://router.vuejs.org) + [Pinia](https://pinia.vuejs.org) + [VueI18n](https://kazupon.github.io/vue-i18n/)
-- Login using [JWT](https://jwt.io/) with [Vue-Auth](https://websanova.com/docs/vue-auth/home), [Axios](https://github.com/mzabriskie/axios) and [Sanctum](https://laravel.com/docs/8.x/sanctum).
+- FrontEnd: [Vue3 Composition Api](https://vuejs.org) + [VueRouter](https://router.vuejs.org) + [Pinia](https://pinia.vuejs.org) + [VueI18n](https://kazupon.github.io/vue-i18n/)
+- Login using [Vue-Auth](https://websanova.com/docs/vue-auth/home), [Axios](https://github.com/mzabriskie/axios) and [Sanctum](https://laravel.com/docs/8.x/sanctum).
 - The api routes, are separate for each module, in **Modules/{ModuleName}/routes_api.php**
 - [ElementUI](https://element-plus.org/) UI Kit 
 - [Lodash](https://lodash.com) js utilities
@@ -92,18 +92,14 @@ This will create:
 │
 ├── routes.js
 │
-├── api/
-│   └── index.js
+├── {moduleName}Api.js
+│
+├── {moduleName}Store.js
 │
 ├── components/
-│   ├── {ModuleName}List.vue
-│   ├── {ModuleName}View.vue
-│   └── {ModuleName}Form.vue
-│
-└── store/
-    ├── store.js
-    ├── types.js
-    └── actions.js
+    ├── {ModuleName}List.vue
+    ├── {ModuleName}View.vue
+    └── {ModuleName}Form.vue
 ```
 
 

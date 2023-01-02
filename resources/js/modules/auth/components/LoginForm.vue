@@ -1,15 +1,16 @@
 <template>
     <el-form
-        ref="loginForm"
+        ref="loginFormRef"
         :model="form"
         :rules="rules"
+        hide-required-asterisk
         label-width="120px"
         @keyup.enter.native="onSubmit"
     >
         <el-form-item
             prop="email"
             :label="$t('auth.login.email_label')"
-            :error="$t(formErrors.get('email'))"
+            :error="$t(errors.get('email'))"
             class="form-group"
         >
             <el-input
@@ -21,7 +22,7 @@
         <el-form-item
             prop="password"
             :label="$t('auth.login.password_label')"
-            :error="$t(formErrors.get('password'))"
+            :error="$t(errors.get('password'))"
             class="form-group"
         >
             <el-input
@@ -43,68 +44,41 @@
     </el-form>
 </template>
 
-<script>
-import {Errors} from '@/includes/Errors'
+<script setup>
+import {ref} from 'vue'
+import {useI18n} from 'vue-i18n'
 
-export default {
-    name: 'LoginForm',
-    props: {
-        errors: {
-            type: Object,
-            default: null
-        },
-        loading: {
-            type: Boolean,
-            default: false
-        }
+const {t} = useI18n()
+
+const emit = defineEmits()
+
+const props = defineProps({
+    errors: {
+        type: Object,
+        default: null
     },
-    data() {
-        return {
-            form: {
-                email: '',
-                password: '',
-                device_name: this.$config.deviceName
-            },
-            rules: {
-                email:      [{required:true, message: this.$t('global.form.rules.required', { 'fieldName': this.$t('auth.login.email_label')}), trigger: 'blur'}],
-                password:   [{required:true, message: this.$t('global.form.rules.required', { 'fieldName': this.$t('auth.login.password_label')}), trigger: 'blur'}],
-            },
-            formErrors: new Errors()
-        }
-    },
-    watch: {
-        errors: function () {
-            this.formErrors.record(this.errors)
-        }
-    },
-    methods: {
-        onSubmit(e) {
-            this.$refs['loginForm'].validate((valid) => {
-                if (valid) {
-                    this.$emit('submit', {
-                        ...this.form
-                    })
-                }
-            })
-        },
-    },
+    loading: {
+        type: Boolean,
+        default: false
+    }
+})
+
+const loginFormRef = ref()
+
+const form = ref({
+    email: '',
+    password: '',
+    device_name: window.config.deviceName
+})
+
+const rules = ref({
+    email:      [{ required:true, message: t('global.form.rules.required', { 'fieldName': t('auth.login.email_label')}), trigger: 'blur' }],
+    password:   [{ required:true, message: t('global.form.rules.required', { 'fieldName': t('auth.login.password_label')}), trigger: 'blur' }],
+})
+
+function onSubmit(e) {
+    loginFormRef.value.validate((valid) => {
+        if (valid) emit('submit', form.value)
+    })
 }
 </script>
-
-<style scoped lang="scss">
-    .el-form-item__label {
-        padding: 0 !important;
-    }
-
-    .sign-up-form {
-
-        .el-form-item {
-            margin-bottom: 12px;
-
-            .el-form-item__label {
-                padding: 0 !important;
-            }
-        }
-    }
-
-</style>

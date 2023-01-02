@@ -1,6 +1,5 @@
 import axios from 'axios'
 import {ElMessage} from 'element-plus'
-import i18n from '@/plugins/i18n'
 
 let token = document.head.querySelector('meta[name="csrf-token"]')
 axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
@@ -13,9 +12,9 @@ axios.interceptors.response.use(response => response, error => {
     if (error.response.data.message) {
         console.error('--- ', error.response.data.message)
     }
-    if (error.response.status >= 500) {
-        ElMessage.error(i18n.t('global.unknown_server_error').toString())
-    } else if (error.response.data.message) {
+    if (error.response?.status >= 500) {
+        ElMessage.error('Unknown server error!')
+    } else if (error.response?.status === 401 && error.response.data.message) {
         ElMessage.error(error.response.data.message)
     }
 

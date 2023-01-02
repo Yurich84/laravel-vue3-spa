@@ -33,29 +33,25 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import {ref} from 'vue'
+import authApi from '../authApi'
+import {useRoute} from 'vue-router'
 
-import authApi from '../api'
+const route = useRoute()
 
-export default {
-    name: 'VerifyEmail',
-    data: () => ({
-        error: '',
-        success: ''
-    }),
-    mounted() {
-        this.verifyEmail()
-    },
-    methods: {
-        verifyEmail() {
-            const qs = (params) => Object.keys(params).map(key => `${key}=${params[key]}`).join('&')
+const error = ref('')
+const success = ref('')
 
-            authApi.verify(this.$route.params.user, qs(this.$route.query)).then(res => {
-                this.success = res.data.status
-            }).catch(error => {
-                this.error = error.response.data.status
-            })
-        }
-    },
+verifyEmail()
+
+function verifyEmail() {
+    const qs = (params) => Object.keys(params).map(key => `${key}=${params[key]}`).join('&')
+
+    authApi.verify(route.params.user, qs(route.query)).then(res => {
+        success.value = res.data.status
+    }).catch(error => {
+        error.value = error.response.data.status
+    })
 }
 </script>

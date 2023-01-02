@@ -2,39 +2,36 @@
     <div>
         <h1>{{ $t('auth.login.title') }}</h1>
         <login-form
-            :errors="authErrors"
+            :errors="errors"
             :loading="loading"
             @submit="onSubmit"
         />
     </div>
 </template>
 
-<script>
+<script setup>
 import LoginForm from './LoginForm.vue'
-export default {
-    name: 'Login',
-    components: {LoginForm},
-    data() {
-        return {
-            authErrors: {},
-            loading: false,
-        }
-    },
-    methods: {
-        onSubmit(loginData) {
-            this.loading = true
-            this.$auth
-                .login({
-                    data: loginData,
-                })
-                .then(() => {
-                    // success
-                }, error => {
-                    if (error.response.status === 422)
-                        this.authErrors = error.response.data.errors
-                })
-                .finally(() => this.loading = false)
-        }
-    }
+import {ref} from 'vue'
+import {useAuth} from '@websanova/vue-auth'
+import {useErrors} from '@/includes/composable/errors'
+
+const errors = useErrors()
+const auth = useAuth()
+const loading = ref(false)
+
+function onSubmit(loginData) {
+    loading.value = true
+
+    auth
+        .login({
+            data: loginData,
+            remember: loginData.remember
+        })
+        .then(null, error => {
+            if (error.response?.status === 422) errors.record(error.response.data.errors)
+            else console.error(error)
+        })
+        .finally(() => loading.value = false)
 }
+
 </script>

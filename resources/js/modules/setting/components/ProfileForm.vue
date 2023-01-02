@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import {Errors} from '@/includes/Errors'
 import settingApi from '../api'
 
 export default {
@@ -66,8 +65,6 @@ export default {
                     { type: 'email', message: this.$t('form.rules.email'), trigger: ['blur', 'change'] }
                 ],
             },
-            errors: new Errors()
-
         }
     },
     methods: {

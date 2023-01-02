@@ -33,35 +33,29 @@
     </div>
 </template>
 
-<script>
-import authApi from '../api'
+<script setup>
+import authApi from '../authApi'
+import {ref} from 'vue'
+import {useI18n} from 'vue-i18n'
+import {ElMessage} from 'element-plus'
 
-export default {
-    name: 'ResendVerification',
-    data() {
-        return {
-            form: {},
-            rules: {
-                email: [
-                    {
-                        required: true,
-                        message: this.$t('form.rules.required', {'fieldName': this.$t('setting.profile.email')}),
-                        trigger: 'blur'
-                    },
-                    {type: 'email', message: this.$t('form.rules.email'), trigger: ['blur', 'change']}
-                ],
-            },
-        }
-    },
-    methods: {
-        resend() {
-            authApi.resend(this.form).then(response => {
-                this.$message({
-                    message: response.data.message,
-                    type: response.data.type
-                })
-            })
-        }
-    },
+const {t} = useI18n()
+
+const form = ref({})
+
+const rules = ref({
+    email: [
+        { required: true, message: t('form.rules.required', {'fieldName': t('setting.profile.email')}), trigger: 'blur' },
+        { type: 'email', message: t('form.rules.email'), trigger: ['blur', 'change'] }
+    ],
+})
+
+function resend() {
+    authApi.resend(form.value).then(response => {
+        ElMessage({
+            message: response.data.message,
+            type: response.data.type
+        })
+    })
 }
 </script>
