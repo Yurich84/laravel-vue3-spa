@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Console\View\Components\Factory;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -15,6 +16,7 @@ class MakeBackEndModule extends MakeModuleCommand
     {
         parent::__construct();
         $this->output = new ConsoleOutput();
+        $this->components = new Factory($this->output);
     }
 
     /**
@@ -48,13 +50,13 @@ class MakeBackEndModule extends MakeModuleCommand
         $path = $this->module_path."/Controllers/{$this->module}Controller.php";
 
         if ($this->alreadyExists($path)) {
-            $this->error('Controller already exists!');
+            $this->components->error('Controller already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/backEnd/controller.api.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('Controller created successfully.');
+            $this->components->info('Controller created successfully.');
         }
     }
 
@@ -67,13 +69,13 @@ class MakeBackEndModule extends MakeModuleCommand
         $path = $this->module_path.'/routes_api.php';
 
         if ($this->alreadyExists($path)) {
-            $this->error('Routes already exists!');
+            $this->components->error('Routes already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/backEnd/routes.api.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('Routes created successfully.');
+            $this->components->info('Routes created successfully.');
         }
     }
 
@@ -87,13 +89,13 @@ class MakeBackEndModule extends MakeModuleCommand
         $path = $this->module_path."/Requests/{$this->module}Request.php";
 
         if ($this->alreadyExists($path)) {
-            $this->error('Request already exists!');
+            $this->components->error('Request already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/backEnd/request.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('Request created successfully.');
+            $this->components->info('Request created successfully.');
         }
     }
 
@@ -107,13 +109,13 @@ class MakeBackEndModule extends MakeModuleCommand
         $path = $this->module_path."/Resources/{$this->module}Resource.php";
 
         if ($this->alreadyExists($path)) {
-            $this->error('Resource already exists!');
+            $this->components->error('Resource already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/backEnd/resource.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('Resource created successfully.');
+            $this->components->info('Resource created successfully.');
         }
     }
 }

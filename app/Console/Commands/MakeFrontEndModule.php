@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Console\View\Components\Factory;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -15,6 +16,7 @@ class MakeFrontEndModule extends MakeModuleCommand
     {
         parent::__construct();
         $this->output = new ConsoleOutput();
+        $this->components = new Factory($this->output);
     }
 
     /**
@@ -55,13 +57,13 @@ class MakeFrontEndModule extends MakeModuleCommand
         $path = $this->module_path."/components/{$this->module}List.vue";
 
         if ($this->alreadyExists($path)) {
-            $this->error('VueList Component already exists!');
+            $this->components->error('VueList Component already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/frontEnd/vue.list.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('VueList Component created successfully.');
+            $this->components->info('VueList Component created successfully.');
         }
     }
 
@@ -76,13 +78,13 @@ class MakeFrontEndModule extends MakeModuleCommand
         $path = $this->module_path."/components/{$this->module}View.vue";
 
         if ($this->alreadyExists($path)) {
-            $this->error('VueView Component already exists!');
+            $this->components->error('VueView Component already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/frontEnd/vue.view.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('VueView Component created successfully.');
+            $this->components->info('VueView Component created successfully.');
         }
     }
 
@@ -97,13 +99,13 @@ class MakeFrontEndModule extends MakeModuleCommand
         $path = $this->module_path."/components/{$this->module}Form.vue";
 
         if ($this->alreadyExists($path)) {
-            $this->error('VueForm Component already exists!');
+            $this->components->error('VueForm Component already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/frontEnd/vue.form.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('VueForm Component created successfully.');
+            $this->components->info('VueForm Component created successfully.');
         }
     }
 
@@ -118,13 +120,13 @@ class MakeFrontEndModule extends MakeModuleCommand
         $path = $this->module_path.'/store/store.js';
 
         if ($this->alreadyExists($path)) {
-            $this->error('Store already exists!');
+            $this->components->error('Store already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/frontEnd/store.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('Store created successfully.');
+            $this->components->info('Store created successfully.');
         }
     }
 
@@ -139,13 +141,13 @@ class MakeFrontEndModule extends MakeModuleCommand
         $path = $this->module_path.'/store/types.js';
 
         if ($this->alreadyExists($path)) {
-            $this->error('Types already exists!');
+            $this->components->error('Types already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/frontEnd/store.types.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('Types created successfully.');
+            $this->components->info('Types created successfully.');
         }
     }
 
@@ -160,13 +162,13 @@ class MakeFrontEndModule extends MakeModuleCommand
         $path = $this->module_path.'/store/actions.js';
 
         if ($this->alreadyExists($path)) {
-            $this->error('Actions already exists!');
+            $this->components->error('Actions already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/frontEnd/store.actions.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('Actions created successfully.');
+            $this->components->info('Actions created successfully.');
         }
     }
 
@@ -181,13 +183,13 @@ class MakeFrontEndModule extends MakeModuleCommand
         $path = $this->module_path.'/routes.js';
 
         if ($this->alreadyExists($path)) {
-            $this->error('Vue Routes already exists!');
+            $this->components->error('Vue Routes already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/frontEnd/routes.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('Vue Routes created successfully.');
+            $this->components->info('Vue Routes created successfully.');
         }
     }
 
@@ -202,13 +204,13 @@ class MakeFrontEndModule extends MakeModuleCommand
         $path = $this->module_path.'/api/index.js';
 
         if ($this->alreadyExists($path)) {
-            $this->error('Api file already exists!');
+            $this->components->error('Api file already exists!');
         } else {
             $stub = $this->files->get(base_path('stubs/frontEnd/api.stub'));
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('Api file created successfully.');
+            $this->components->info('Api file created successfully.');
         }
     }
 }

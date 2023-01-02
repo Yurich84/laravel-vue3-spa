@@ -134,7 +134,7 @@ class MakeModuleCommand extends Command
 
             $this->createFileWithStub($stub, $path);
 
-            $this->info('Tests created successfully.');
+            $this->components->info('Tests created successfully.');
         }
     }
 
