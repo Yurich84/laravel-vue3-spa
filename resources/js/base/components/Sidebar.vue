@@ -4,7 +4,7 @@
             :default-active="$route.path"
             class="el-menu-vertical-demo"
             router
-            :collapse="coreIsCollapsed"
+            :collapse="isCollapsed"
         >
             <template v-for="(item, index) in admin_routes">
                 <el-menu-item
@@ -45,10 +45,12 @@
 <script setup>
 import {computed} from 'vue'
 import {useRouter} from 'vue-router'
+import {storeToRefs} from 'pinia'
+import {useBaseStore} from '@/base/baseStore'
 
 const router = useRouter()
 
-const coreIsCollapsed = computed(() => false)
+const { isCollapsed } = storeToRefs(useBaseStore())
 
 const admin_routes = computed(() => router.options.routes[0].children[0].children)
 </script>

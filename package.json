@@ -39,12 +39,13 @@
         "element-plus": "^2.2.27",
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.19",
+        "pinia": "^2.0.28",
         "postcss": "^8.1.14",
         "resolve-url-loader": "4.0.0",
         "vite": "^4.0.0",
         "vue": "3.2",
         "vue-axios": "^3.4.0",
-        "vue-i18n": "^9.2.0-beta.26",
+        "vue-i18n": "^9.2.2",
         "vue-router": "^4.0.12"
     }
 }

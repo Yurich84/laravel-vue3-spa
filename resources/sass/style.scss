@@ -61,3 +61,58 @@ body {
     text-align: center;
     margin: auto;
 }
+
+.header {
+    height: 60px;
+    line-height: 60px;
+    background: #20a0ff;
+    color: #fff;
+    --el-header-padding: 0px !important;
+
+    .logo {
+        float: left;
+        height: 60px;
+        font-size: 22px;
+        padding:0 20px;
+        border-color: rgba(238, 241, 146, 0.3);
+        border-right-width: 1px;
+        border-right-style: solid;
+    }
+
+    .logo-width {
+        width: 190px;
+    }
+
+    .logo-collapse-width {
+        width: 23px;
+    }
+
+    .tools {
+        float: left;
+        div {
+            padding: 0 23px;
+            width: 14px;
+            height: 60px;
+            line-height: 60px;
+            cursor: pointer;
+        }
+    }
+
+    .userinfo {
+        float: right;
+        text-align: right;
+        padding-right: 35px;
+        .userinfo-inner {
+            cursor: pointer;
+            color: #fff;
+
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 20px;
+                margin: 10px 0 10px 10px;
+                float: right;
+            }
+        }
+    }
+}

@@ -8,6 +8,7 @@ const DEFAULT_LANGUAGE = 'en'
 changeDayjsLocale(DEFAULT_LANGUAGE)
 
 const i18n = createI18n({
+    legacy: false,
     locale: DEFAULT_LANGUAGE,
     messages,
     silentTranslationWarn: true

@@ -2,18 +2,16 @@
     <el-header class="header">
         <div
             class="logo"
-            :class="coreIsCollapsed?'logo-collapse-width':'logo-width'"
+            :class="isCollapsed ? 'logo-collapse-width' : 'logo-width'"
         >
-            {{ coreIsCollapsed ? '' : $config.appName }}
+            {{ isCollapsed ? '' : $config.appName }}
         </div>
         <div class="tools">
-            <div @click.prevent="collapse">
+            <div @click.prevent="toggleCollapse">
                 <i class="fa fa-align-justify" />
             </div>
         </div>
-        <div
-            class="userinfo"
-        >
+        <div class="userinfo">
             <span>{{ sysUserName }}</span>
             <el-dropdown>
                 <span class="el-dropdown-link userinfo-inner">
@@ -34,93 +32,31 @@
     </el-header>
 </template>
 
-<script>
-export default {
-    data: () => ({
-        sysUserName: '',
-        sysUserAvatar: '',
-    }),
-    methods: {
-        logout: function () {
-            this.$confirm(this.$t('auth.logout_confirm.text').toString(), this.$t('auth.logout_confirm.title').toString(), {
-                confirmButtonText: this.$t('auth.logout_confirm.button_ok').toString(),
-                cancelButtonText: this.$t('auth.logout_confirm.button_cancel').toString(),
-            }).then(() => {
-                this.$auth.logout()
-            })
-        },
-        collapse() {
-            // todo
-        },
-    },
-    mounted() {
-        const user = this.$auth.user()
-        if (user) {
-            this.sysUserName = user.name || ''
-            this.sysUserAvatar = user.avatar || ''
-        }
-    },
-    computed: {
-        coreIsCollapsed() {
-            return false
-        }
-    }
+<script setup>
+import {computed} from 'vue'
+import {ElMessageBox} from 'element-plus'
+import {useAuth} from '@websanova/vue-auth'
+import bus from '@/includes/Event'
+import { useI18n } from 'vue-i18n'
+import {storeToRefs} from 'pinia'
+import {useBaseStore} from '@/base/baseStore'
+
+const {t} = useI18n()
+const auth = useAuth()
+
+const sysUserName = computed(() => auth.user()?.name || '')
+const sysUserAvatar = computed(() => auth.user()?.avatar || '')
+
+const { isCollapsed } = storeToRefs(useBaseStore())
+const { toggleCollapse } = useBaseStore()
+
+function logout() {
+    ElMessageBox.confirm(t('auth.logout_confirm.text'), t('auth.logout_confirm.title'), {
+        confirmButtonText: t('auth.logout_confirm.button_ok'),
+        cancelButtonText: t('auth.logout_confirm.button_cancel'),
+    }).then(async () => {
+        bus.$emit('logout')
+        await auth.logout()
+    })
 }
 </script>
-
-<style lang="scss">
-.header {
-    height: 60px;
-    line-height: 60px;
-    background: #20a0ff;
-    color: #fff;
-    --el-header-padding: 0px !important;
-
-    .logo {
-        float: left;
-        height: 60px;
-        font-size: 22px;
-        padding:0 20px;
-        border-color: rgba(238, 241, 146, 0.3);
-        border-right-width: 1px;
-        border-right-style: solid;
-    }
-
-    .logo-width {
-        width: 190px;
-    }
-
-    .logo-collapse-width {
-        width: 65px
-    }
-
-    .tools {
-        float: left;
-        div {
-            padding: 0 23px;
-            width: 14px;
-            height: 60px;
-            line-height: 60px;
-            cursor: pointer;
-        }
-    }
-
-    .userinfo {
-        float: right;
-        text-align: right;
-        padding-right: 35px;
-        .userinfo-inner {
-            cursor: pointer;
-            color: #fff;
-
-            img {
-                width: 40px;
-                height: 40px;
-                border-radius: 20px;
-                margin: 10px 0 10px 10px;
-                float: right;
-            }
-        }
-    }
-}
-</style>
