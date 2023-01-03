@@ -145,10 +145,8 @@
 </template>
 
 <script>
-import {mapActions, mapGetters, mapMutations} from 'vuex'
-import {DUMMY_VARIABLE_SINGULAR_FETCH, DUMMY_VARIABLE_SINGULAR_OBTAIN} from '../store/types'
-import dummyVariableSingularApi from '../api'
-import DummySingularForm from './DummySingularForm'
+import dummyVariableSingularApi from '../dummyVariableSingularApiApi'
+import DummySingularForm from './DummySingularForm.vue'
 
 export default {
     name:'DummySingularList',

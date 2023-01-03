@@ -38,8 +38,6 @@ class MakeFrontEndModule extends MakeModuleCommand
         $this->createVueForm();
 
         $this->createStore();
-        $this->createStoreTypes();
-        $this->createStoreActions();
 
         $this->createRoutes();
         $this->createApi();
@@ -117,7 +115,7 @@ class MakeFrontEndModule extends MakeModuleCommand
      */
     private function createStore()
     {
-        $path = $this->module_path.'/store/store.js';
+        $path = $this->module_path."/use{$this->module}Store.js";
 
         if ($this->alreadyExists($path)) {
             $this->components->error('Store already exists!');
@@ -127,48 +125,6 @@ class MakeFrontEndModule extends MakeModuleCommand
             $this->createFileWithStub($stub, $path);
 
             $this->components->info('Store created successfully.');
-        }
-    }
-
-    /**
-     * Create a Vue component file for the module.
-     *
-     * @return void
-     * @throws FileNotFoundException
-     */
-    private function createStoreTypes()
-    {
-        $path = $this->module_path.'/store/types.js';
-
-        if ($this->alreadyExists($path)) {
-            $this->components->error('Types already exists!');
-        } else {
-            $stub = $this->files->get(base_path('stubs/frontEnd/store.types.stub'));
-
-            $this->createFileWithStub($stub, $path);
-
-            $this->components->info('Types created successfully.');
-        }
-    }
-
-    /**
-     * Create a Vue component file for the module.
-     *
-     * @return void
-     * @throws FileNotFoundException
-     */
-    private function createStoreActions()
-    {
-        $path = $this->module_path.'/store/actions.js';
-
-        if ($this->alreadyExists($path)) {
-            $this->components->error('Actions already exists!');
-        } else {
-            $stub = $this->files->get(base_path('stubs/frontEnd/store.actions.stub'));
-
-            $this->createFileWithStub($stub, $path);
-
-            $this->components->info('Actions created successfully.');
         }
     }
 
@@ -201,7 +157,8 @@ class MakeFrontEndModule extends MakeModuleCommand
      */
     private function createApi()
     {
-        $path = $this->module_path.'/api/index.js';
+        $moduleLC = lcfirst($this->module);
+        $path = $this->module_path."/{$moduleLC}Api.js";
 
         if ($this->alreadyExists($path)) {
             $this->components->error('Api file already exists!');

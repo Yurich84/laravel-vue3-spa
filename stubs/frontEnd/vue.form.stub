@@ -1,7 +1,7 @@
 <template>
     <section id="dummyVariableSingular-form">
         <el-form
-            ref="form"
+            ref="formRef"
             :model="form"
             label-width="120px"
             :rules="rules"
@@ -30,7 +30,7 @@
                 {{ $t('global.cancel') }}
             </el-button>
             <el-button
-                :loading="formLoading"
+                :loading="loading"
                 type="success"
                 size="small"
                 class="float-right"
@@ -42,71 +42,71 @@
     </section>
 </template>
 
-<script>
-import {Errors} from '@/includes/Errors'
-import dummyVariableSingularApi from '../api'
+<script setup>
+import {ref, onMounted, watch} from 'vue'
+import {useI18n} from 'vue-i18n'
+import {ElMessage} from 'element-plus'
+import {useErrors} from '@/includes/composable/errors'
+import dummyVariableSingularApi from '../dummyVariableSingularApi'
 
-export default {
-    name: 'DummySingularForm',
-    props: {
-        initialForm: {
-            type: Object,
-            default: {}
-        },
-    },
-    data() {
-        return {
-            errors: new Errors(),
-            formLoading: false,
-            formTitle: 'New DummySingular',
-            form: {},
-            rules: {
-                name: [
-                    { required: true, message: 'dummyVariableSingular name is required' },
-                ],
-            },
-        }
-    },
-    mounted() {
-        this.form = Object.assign({}, this.initialForm)
-    },
-    watch: {
-        initialForm(formData) {
-            if(_.isEmpty(formData)) this.clearForm()
-            this.form = Object.assign({}, formData)
-        }
-    },
-    methods: {
-        saveSubmit() {
-            this.$refs.form.validate((valid) => {
-                if (valid) {
-                    this.formLoading = true
-                    this.errors.clear()
-                    let action = this.form.id ? dummyVariableSingularApi.update : dummyVariableSingularApi.create
+const props = defineProps({
+    initialForm: {
+        type: Object,
+        default: {}
+    }
+})
 
-                    action(this.form).then((response) => {
-                        this.$message({
-                            message: response.data.message,
-                            type: response.data.type
-                        })
-                        if(response.data.type === 'success')
-                            this.$emit('saved')
-                    }).catch(error => {
-                        if (error.response.data.errors)
-                            this.errors.record(error.response.data.errors)
-                    }).finally(() => this.formLoading = false)
-                }
-            })
-        },
-        cancel() {
-            this.clearForm()
-            this.$emit('cancel')
-        },
-        clearForm() {
-            this.errors.clear()
-            if (this.$refs.form)
-                this.$refs.form.resetFields()
-        }
+const {t} = useI18n()
+const emit = defineEmits()
+const formRef = ref()
+const errors = useErrors()
+const loading = ref(false)
+const form = ref({})
+
+const rules = ref({
+    name: [
+        { required:true, message: t('form.rules.required', { 'fieldName': dummyVariableSingular}), trigger: 'blur' }
+    ],
+})
+
+onMounted(() => Object.assign({}, props.initialForm))
+
+watch(
+    () => props.formData,
+    val => {
+        if(_.isEmpty(val)) clearForm()
+        form.value = Object.assign({}, val)
     },
+    { immediate: true }
+)
+
+function saveSubmit() {
+    formRef.value.validate((valid) => {
+        if (valid) {
+            loading.value = true
+            errors.clear()
+            let action = form.value.id ? dummyVariableSingularApi.update : dummyVariableSingularApi.create
+
+            action(form.value).then((response) => {
+                ElMessage({
+                    message: response.data.message,
+                    type: response.data.type
+                })
+                if(response.data.type === 'success') emit('saved')
+            }).catch(error => {
+                if (error.response.data.errors) errors.record(error.response.data.errors)
+            }).finally(() => loading.value = false)
+        }
+    })
+}
+
+function cancel() {
+    clearForm()
+    emit('cancel')
+}
+
+function clearForm() {
+    errors.clear()
+    formRef.value.resetFields()
 }
 </script>

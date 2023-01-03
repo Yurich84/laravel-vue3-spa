@@ -6,25 +6,19 @@
     </section>
 </template>
 
-<script>
-import dummyVariableSingularApi from '../api'
+<script setup>
+import {ref} from 'vue'
+import dummyVariableSingularApi from '../dummyVariableSingularApi'
+import {useRoute} from 'vue-router'
 
-export default {
-    name: 'DummySingularView',
-    components: {},
-    data() {
-        return {
-            dummyVariableSingular: {},
-        }
-    },
-    methods: {
-        async fetchDummySingular() {
-            const response = await dummyVariableSingularApi.find(this.$route.params.id)
-            this.dummyVariableSingular = response.data.data
-        },
-    },
-    mounted() {
-        this.fetchDummySingular()
-    },
+const route = useRoute()
+
+const dummyVariableSingular = ref({})
+
+fetchDummySingular()
+
+async function fetchDummySingular() {
+    const response = await dummyVariableSingularApi.find(route.params.id)
+    dummyVariableSingular.value = response.data.data
 }
 </script>

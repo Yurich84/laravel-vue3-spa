@@ -35,13 +35,13 @@ class DummySingularController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param DummySingularRequest $request
+     * @param DummySingular $dummyVariableSingular
      * @return JsonResponse
      */
-    public function store(DummySingularRequest $request)
+    public function store(DummySingularRequest $request, DummySingular $dummyVariableSingular)
     {
         $data = $request->validated();
-        $dummyVariableSingular = new DummySingular($data);
-        $dummyVariableSingular->save();
+        $dummyVariableSingular->fill($data)->save();
 
         return response()->json([
             'type' => self::RESPONSE_TYPE_SUCCESS,
