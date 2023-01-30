@@ -115,7 +115,8 @@ class MakeFrontEndModule extends MakeModuleCommand
      */
     private function createStore()
     {
-        $path = $this->module_path."/use{$this->module}Store.js";
+        $moduleLC = lcfirst($this->module);
+        $path = $this->module_path."/{$moduleLC}Store.js";
 
         if ($this->alreadyExists($path)) {
             $this->components->error('Store already exists!');

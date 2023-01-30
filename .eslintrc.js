@@ -1,6 +1,13 @@
 module.exports = {
+    parserOptions: {
+        requireConfigFile: false,
+        parser: '@babel/eslint-parser',
+        sourceType: 'module',
+        allowImportExportEverywhere: true,
+        ecmaVersion: 2020
+    },
     extends: [
-        'plugin:vue/recommended',
+        'plugin:vue/vue3-recommended',
     ],
     rules: {
         'indent': [
@@ -29,15 +36,9 @@ module.exports = {
         ],
         'vue/sort-keys': 'off',
         'vue/static-class-names-order': 'off',
-        'vue/order-in-components': 'off',
         'vue/no-v-html': 'off',
         'vue/require-valid-default-prop': 'off',
+        'vue/require-explicit-emits': 'off',
         'vue/no-multiple-template-root': 'off'
-    },
-    'parserOptions': {
-        'parser': 'babel-eslint',
-        'ecmaVersion': 2020,
-        'sourceType': 'module',
-        'allowImportExportEverywhere': true
     },
 }

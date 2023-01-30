@@ -62,10 +62,22 @@ body {
     margin: auto;
 }
 
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.w-100 {
+    width: 100%;
+}
+
 .header {
     height: 60px;
     line-height: 60px;
-    background: #20a0ff;
+    background: $color-primary;
     color: #fff;
     --el-header-padding: 0px !important;
 
