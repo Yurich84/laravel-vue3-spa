@@ -6,6 +6,7 @@
         <el-form-item class="mr-0 float-right">
             <el-input
                 v-model="filters.search"
+                style="width: 200px"
                 placeholder="Search"
                 clearable
             />

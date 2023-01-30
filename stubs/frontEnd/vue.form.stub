@@ -5,7 +5,7 @@
             :model="form"
             label-width="120px"
             :rules="rules"
-            @submit.native.prevent="saveSubmit"
+            @submit.prevent="saveSubmit"
         >
             <el-form-item
                 label="DummySingular Name"
@@ -19,22 +19,15 @@
                 />
             </el-form-item>
         </el-form>
-        <div
-            slot="footer"
-            class="dialog-footer"
-        >
-            <el-button
-                size="small"
-                @click.native="cancel"
-            >
+        <div class="dialog-footer">
+            <el-button @click="cancel">
                 {{ $t('global.cancel') }}
             </el-button>
             <el-button
                 :loading="loading"
                 type="success"
-                size="small"
                 class="float-right"
-                @click.native="saveSubmit"
+                @click="saveSubmit"
             >
                 {{ $t('global.save') }}
             </el-button>
@@ -43,7 +36,7 @@
 </template>
 
 <script setup>
-import {ref, onMounted, watch} from 'vue'
+import {ref, onMounted} from 'vue'
 import {useI18n} from 'vue-i18n'
 import {ElMessage} from 'element-plus'
 import {useErrors} from '@/includes/composable/errors'
@@ -69,16 +62,7 @@ const rules = ref({
     ],
 })
 
-onMounted(() => Object.assign({}, props.initialForm))
-
-watch(
-    () => props.formData,
-    val => {
-        if(_.isEmpty(val)) clearForm()
-        form.value = Object.assign({}, val)
-    },
-    { immediate: true }
-)
+onMounted(() => form.value = Object.assign({}, props.initialForm))
 
 function saveSubmit() {
     formRef.value.validate((valid) => {

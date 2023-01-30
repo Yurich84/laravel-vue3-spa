@@ -1,0 +1,25 @@
+import { ref } from 'vue'
+import { defineStore } from 'pinia'
+import dummyVariableSingularApi from './dummyVariableSingularApi'
+
+export const useDummySingularStore = defineStore('dummyVariableSingular', () => {
+
+    const items = ref([])
+    const meta = ref([])
+    const loading = ref(true)
+
+    async function fetchAll(params) {
+        loading.value = true
+        const {data} = await dummyVariableSingularApi.all(params)
+        items.value = data.data
+        meta.value = data.meta
+        loading.value = false
+    }
+
+    return {
+        items,
+        meta,
+        loading,
+        fetchAll
+    }
+})

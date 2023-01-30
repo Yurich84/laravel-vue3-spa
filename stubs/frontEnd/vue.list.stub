@@ -1,50 +1,28 @@
 <template>
-    <section id="dummyVariableSingular">
-        <!-- filters -->
-        <el-col
-            :span="24"
-            class="m-t-10"
+    <section
+        id="dummyVariablePlural"
+        class="mt-20"
+    >
+        <el-button
+            type="primary"
+            icon="plus"
+            class="float-left"
+            @click="handleAdd"
         >
-            <el-form
-                :inline="true"
-                :model="filters"
-                size="mini"
-                @submit.native.prevent="fetchData"
-            >
-                <el-form-item>
-                    <el-button
-                        type="primary"
-                        @click="handleAdd"
-                    >
-                        <i class="fa fa-plus" />
-                        {{ $t('global.add') }}
-                    </el-button>
-                </el-form-item>
-                <el-form-item class="mr-0 float-right">
-                    <el-input
-                        v-model="filters.search"
-                        :placeholder="$t('global.search')"
-                        @input="applySearch"
-                    >
-                        <i
-                            v-if="filters.search.length"
-                            slot="suffix"
-                            class="el-input__icon el-icon-error"
-                            @click="clearSearch"
-                        />
-                    </el-input>
-                </el-form-item>
-            </el-form>
-        </el-col>
-
+            Add
+        </el-button>
+        <base-filter
+            v-model="filters"
+            class="float-right"
+        />
         <!-- table -->
         <el-table
-            v-loading="dummyVariablePluralLoading"
-            :data="dummyVariablePlural"
+            v-loading="loading"
+            :data="items"
             highlight-current-row
             class="w-100"
             @sort-change="handleSortChange"
-            @filter-change="fetchData"
+            @filter-change="fetchAll(params)"
         >
             <el-table-column
                 prop="id"
@@ -58,22 +36,16 @@
                 sortable
             >
                 <template #default="scope">
-                    <router-link
-                        :to="{name: 'Show DummySingular', params: {id: scope.row.id}}"
-                        class="el-link el-link--default ellipsis-form"
-                    >
-                        <span class="el-link--inner item_name">
-                            {{ scope.row.name }}
-                        </span>
+                    <router-link :to="{name: 'Show DummySingular', params: {id: scope.row.id}}">
+                        {{ scope.row.name }}
                     </router-link>
                 </template>
             </el-table-column>
             <el-table-column
-                :sort-orders="sortOrders"
                 sortable
                 prop="updated_at"
                 label="Updated"
-                width="200"
+                width="120"
             >
                 <template #default="scope">
                     {{ $filters.date(scope.row.updated_at) }}
@@ -93,6 +65,7 @@
                         <span>
                             <el-button
                                 size="small"
+                                class="ml-10"
                                 @click="handleEdit(scope.row)"
                             >
                                 <i class="fas fa-pencil-alt" />
@@ -108,6 +81,8 @@
                             <el-button
                                 type="danger"
                                 size="small"
+                                plain
+                                class="ml-10"
                                 @click="handleDelete(scope.row)"
                             >
                                 <i class="fa fa-trash" />
@@ -120,20 +95,21 @@
 
         <!-- pagination -->
         <el-pagination
-            :current-page="page"
-            :page-size="pageSize"
-            :total="productsMeta.total || 0"
-            layout="total, sizes, prev, pager, next"
-            class="float-right my-3 mb-3"
-            @size-change="fetchData"
-            @current-change="fetchData"
+            v-model:current-dummyVariableSingular="dummyVariableSingular"
+            v-model:dummyVariableSingular-size="dummyVariableSingularSize"
+            :total="meta.total || 0"
+            small
+            layout="total, sizes, prev, dummyVariableSingularr, next"
+            class="float-right mt-20 mb-20"
+            @size-change="fetchAll(params)"
+            @current-change="fetchAll(params)"
         />
 
         <!-- form dialog -->
         <el-dialog
             v-model="formVisible"
             :title="formTitle"
-            close-on-click-modal
+            destroy-on-close
         >
             <DummySingularForm
                 :initial-form="formData"
@@ -144,89 +120,80 @@
     </section>
 </template>
 
-<script>
-import dummyVariableSingularApi from '../dummyVariableSingularApiApi'
+<script setup>
+import {computed, ref, watch} from 'vue'
+import dummyVariableSingularApi from '../dummyVariableSingularApi'
 import DummySingularForm from './DummySingularForm.vue'
+import {storeToRefs} from 'pinia'
+import {useDummySingularStore} from '@/modules/dummyVariableSingular/dummyVariableSingularStore'
+import {ElMessage, ElMessageBox} from 'element-plus'
+import BaseFilter from '@/base/components/filters/BaseFilter.vue'
 
-export default {
-    name:'DummySingularList',
-    components: {DummySingularForm},
-    data() {
-        return {
-            sortBy: 'id,asc',
-            sortOrders: ['ascending', 'descending'],
-            filters: {
-                search: ''
-            },
-            page: 1,
-            pageSize: 10,
-            formVisible: false,
-            formTitle: 'New DummySingular',
-            formData: null
-        }
-    },
-    computed: {
-        ...mapGetters(['dummyVariablePlural', 'dummyVariablePluralMeta', 'dummyVariablePluralLoading']),
-    },
-    created() {
-        this.fetchData()
-    },
-    methods: {
-        ...mapActions([DUMMY_VARIABLE_SINGULAR_FETCH]),
-        ...mapMutations([DUMMY_VARIABLE_SINGULAR_OBTAIN]),
-        handleSortChange(val) {
-            if (val.prop != null && val.order != null) {
-                let sort = val.order.startsWith('a') ? 'asc' : 'desc'
-                this.sortBy = val.prop + ',' + sort
-                this.fetchData()
-            }
-        },
-        handleFilterChange() {
-            this.fetchData()
-        },
-        fetchData() {
-            let params = {
-                page: this.page,
-                search: this.filters.search,
-                sortBy: this.sortBy,
-                pageSize: this.globalPageSize
-            }
-            this[DUMMY_VARIABLE_SINGULAR_FETCH](params)
-        },
-        handleAdd() {
-            this.formTitle = 'New DummySingular'
-            this.formData = {}
-            this.formVisible = true
-        },
-        handleEdit(row) {
-            this.formTitle = 'Edit DummySingular'
-            this.formData = Object.assign({}, row)
-            this.formVisible = true
-        },
-        handleDelete(row) {
-            this.$confirm('This will permanently delete the dummyVariableSingular. Continue?', 'Warning', {
-                type: 'warning'
-            }).then(() => {
-                dummyVariableSingularApi.delete(row.id).then((response) => {
-                    this.$message({
-                        message: response.data.message,
-                        type: response.data.type
-                    })
-                    this.fetchData()
-                })
+const sortBy = ref('id,asc')
+const filters = ref({search: ''})
+const dummyVariableSingular = ref(1)
+const dummyVariableSingularSize = ref(10)
+const formVisible = ref(false)
+const formTitle = ref('New DummySingular')
+const formData = ref(null)
+
+const { items, meta, loading } = storeToRefs(useDummySingularStore())
+const { fetchAll } = useDummySingularStore()
+
+const params = computed(() => ({
+    dummyVariableSingular: dummyVariableSingular.value,
+    sortBy: sortBy.value,
+    dummyVariableSingularSize: dummyVariableSingularSize.value,
+    ...filters.value,
+}))
+
+fetchAll(params.value)
+
+function handleSortChange(val) {
+    if (val.prop != null && val.order != null) {
+        let sort = val.order.startsWith('a') ? 'asc' : 'desc'
+        sortBy.value = val.prop + ',' + sort
+        fetchAll(params.value)
+    }
+}
+
+function handleAdd() {
+    formTitle.value = 'New DummySingular'
+    formData.value = {}
+    formVisible.value = true
+}
+
+function handleEdit(row) {
+    formTitle.value = 'Edit DummySingular'
+    formData.value = Object.assign({}, row)
+    formVisible.value = true
+}
+
+function handleDelete(row) {
+    ElMessageBox.confirm('This will permanently delete the dummyVariableSingular. Continue?', 'Warning', {
+        type: 'warning'
+    }).then(() => {
+        dummyVariableSingularApi.delete(row.id).then((response) => {
+            ElMessage({
+                message: response.data.message,
+                type: response.data.type
             })
-        },
-        applySearch: _.debounce( function() {
-            this.fetchData()
-        }, 300),
-        clearSearch() {
-            this.filters.search = ''
-            this.fetchData()
-        },
-        saved() {
-            this.formVisible = false
-            this.fetchData()
-        },
-    },
+            fetchAll(params.value)
+        })
+    })
+}
+
+watch(
+    () => filters.value,
+    val => applySearch(),
+    { deep: true }
+)
+
+const applySearch = _.debounce(() => fetchAll(params.value), 300)
+
+
+function saved() {
+    formVisible.value = false
+    fetchAll(params.value)
 }
 </script>
