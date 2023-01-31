@@ -4,7 +4,7 @@
             {{ title }}
         </div>
         <div class="links">
-            <a href="https://github.com/Yurich84/laravel-vue-spa-skeleton">
+            <a href="https://github.com/Yurich84/laravel-vue3-spa">
                 github.com/Yurich84/laravel-vue3-spa
             </a>
         </div>

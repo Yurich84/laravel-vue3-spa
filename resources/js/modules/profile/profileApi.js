@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const API_ENDPOINT = 'settings'
 
 export default {

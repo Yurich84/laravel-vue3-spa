@@ -21,7 +21,7 @@
                     <el-dropdown-menu>
                         <el-dropdown-item
                             divided
-                            @click.native="logout"
+                            @click="logout"
                         >
                             {{ $t('auth.logout.title') }}
                         </el-dropdown-item>
@@ -33,12 +33,8 @@
 </template>
 
 <script setup>
-import {computed} from 'vue'
-import {ElMessageBox} from 'element-plus'
 import {useAuth} from '@websanova/vue-auth'
 import bus from '@/includes/Event'
-import { useI18n } from 'vue-i18n'
-import {storeToRefs} from 'pinia'
 import {useBaseStore} from '@/base/baseStore'
 
 const {t} = useI18n()

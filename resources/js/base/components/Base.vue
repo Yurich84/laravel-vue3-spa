@@ -6,9 +6,6 @@
 </template>
 
 <script setup>
-import {shallowRef, watch} from 'vue'
-import {useRoute} from 'vue-router'
-
 const route = useRoute()
 const layoutComponent = shallowRef(null)
 

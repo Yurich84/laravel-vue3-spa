@@ -10,12 +10,9 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
 import {useAuth} from '@websanova/vue-auth'
 import {useErrors} from '@/includes/composable/errors'
-import {ElMessage} from 'element-plus'
 import RegisterForm from './RegisterForm.vue'
-import {useI18n} from 'vue-i18n'
 
 const {t} = useI18n()
 const errors = useErrors()

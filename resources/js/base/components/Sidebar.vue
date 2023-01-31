@@ -43,9 +43,6 @@
 </template>
 
 <script setup>
-import {computed} from 'vue'
-import {useRouter} from 'vue-router'
-import {storeToRefs} from 'pinia'
 import {useBaseStore} from '@/base/baseStore'
 
 const router = useRouter()
