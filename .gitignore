@@ -16,3 +16,5 @@ npm-debug.log
 yarn-error.log
 .idea
 .php-cs-fixer.cache
+auto-imports.d.ts
+components.d.ts

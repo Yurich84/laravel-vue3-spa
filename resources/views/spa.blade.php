@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name') }}</title>
         <script>window.config = @include('variables')</script>
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        @vite(['resources/js/app.js'])
     </head>
     <body>
         <div id="app"></div>

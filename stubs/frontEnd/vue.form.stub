@@ -36,9 +36,6 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue'
-import {useI18n} from 'vue-i18n'
-import {ElMessage} from 'element-plus'
 import {useErrors} from '@/includes/composable/errors'
 import dummyVariableSingularApi from '../dummyVariableSingularApi'
 
@@ -58,7 +55,7 @@ const form = ref({})
 
 const rules = ref({
     name: [
-        { required:true, message: t('form.rules.required', { 'fieldName': dummyVariableSingular}), trigger: 'blur' }
+        { required: true, message: t('form.rules.required', { 'fieldName': 'name'}), trigger: 'blur' }
     ],
 })
 

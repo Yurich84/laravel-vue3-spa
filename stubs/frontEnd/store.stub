@@ -1,5 +1,3 @@
-import { ref } from 'vue'
-import { defineStore } from 'pinia'
 import dummyVariableSingularApi from './dummyVariableSingularApi'
 
 export const useDummySingularStore = defineStore('dummyVariableSingular', () => {

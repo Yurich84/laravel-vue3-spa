@@ -121,12 +121,9 @@
 </template>
 
 <script setup>
-import {computed, ref, watch} from 'vue'
 import dummyVariableSingularApi from '../dummyVariableSingularApi'
 import DummySingularForm from './DummySingularForm.vue'
-import {storeToRefs} from 'pinia'
 import {useDummySingularStore} from '@/modules/dummyVariableSingular/dummyVariableSingularStore'
-import {ElMessage, ElMessageBox} from 'element-plus'
 import BaseFilter from '@/base/components/filters/BaseFilter.vue'
 
 const sortBy = ref('id,asc')
