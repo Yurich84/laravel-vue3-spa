@@ -15,7 +15,9 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class DummySingularController extends Controller
 {
     /**
-     * @param Request $request
+     * Display list of resources
+     *
+     * @param  Request  $request
      * @return AnonymousResourceCollection
      */
     public function index(Request $request)
@@ -34,8 +36,9 @@ class DummySingularController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param DummySingularRequest $request
-     * @param DummySingular $dummyVariableSingular
+     *
+     * @param  DummySingularRequest  $request
+     * @param  DummySingular  $dummyVariableSingular
      * @return JsonResponse
      */
     public function store(DummySingularRequest $request, DummySingular $dummyVariableSingular)
@@ -52,7 +55,7 @@ class DummySingularController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param DummySingular $dummyVariableSingular
+     * @param  DummySingular  $dummyVariableSingular
      * @return DummySingularResource
      */
     public function show(DummySingular $dummyVariableSingular)
@@ -63,8 +66,8 @@ class DummySingularController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param DummySingularRequest $request
-     * @param DummySingular $dummyVariableSingular
+     * @param  DummySingularRequest  $request
+     * @param  DummySingular  $dummyVariableSingular
      * @return JsonResponse
      */
     public function update(DummySingularRequest $request, DummySingular $dummyVariableSingular)
@@ -79,8 +82,11 @@ class DummySingularController extends Controller
     }
 
     /**
-     * @param DummySingular $dummyVariableSingular
+     * Delete the specified resource.
+     *
+     * @param  DummySingular  $dummyVariableSingular
      * @return JsonResponse
+     *
      * @throws Exception
      */
     public function destroy(DummySingular $dummyVariableSingular)
