@@ -26,9 +26,11 @@ class MakeFrontEndModule extends MakeModuleCommand
 
     /**
      * @param $module
+     *
      * @throws FileNotFoundException
      */
-    protected function create($module) {
+    protected function create($module)
+    {
         $this->files = new Filesystem();
         $this->module = $module;
         $this->module_path = base_path('resources/js/modules/'.lcfirst($this->module));
@@ -41,13 +43,13 @@ class MakeFrontEndModule extends MakeModuleCommand
 
         $this->createRoutes();
         $this->createApi();
-
     }
 
     /**
      * Create a Vue component file for the module.
      *
      * @return void
+     *
      * @throws FileNotFoundException
      */
     private function createVueList()
@@ -69,6 +71,7 @@ class MakeFrontEndModule extends MakeModuleCommand
      * Create a Vue component file for the module.
      *
      * @return void
+     *
      * @throws FileNotFoundException
      */
     private function createVueView()
@@ -90,6 +93,7 @@ class MakeFrontEndModule extends MakeModuleCommand
      * Create a Vue component file for the module.
      *
      * @return void
+     *
      * @throws FileNotFoundException
      */
     private function createVueForm()
@@ -111,6 +115,7 @@ class MakeFrontEndModule extends MakeModuleCommand
      * Create a Vue component file for the module.
      *
      * @return void
+     *
      * @throws FileNotFoundException
      */
     private function createStore()
@@ -133,6 +138,7 @@ class MakeFrontEndModule extends MakeModuleCommand
      * Create a Vue component file for the module.
      *
      * @return void
+     *
      * @throws FileNotFoundException
      */
     private function createRoutes()
@@ -154,6 +160,7 @@ class MakeFrontEndModule extends MakeModuleCommand
      * Create a Vue component file for the module.
      *
      * @return void
+     *
      * @throws FileNotFoundException
      */
     private function createApi()

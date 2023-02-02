@@ -129,7 +129,7 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * @param string $modules_folder
+     * @param  string  $modules_folder
      * @return array
      */
     private function getModulesList(string $modules_folder): array

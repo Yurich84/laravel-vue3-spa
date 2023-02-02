@@ -25,8 +25,8 @@ class VerificationController extends Controller
     /**
      * Mark the user's email address as verified.
      *
-     * @param Request $request
-     * @param  User $user
+     * @param  Request  $request
+     * @param  User  $user
      * @return JsonResponse
      */
     public function verify(Request $request, User $user)
@@ -55,8 +55,9 @@ class VerificationController extends Controller
     /**
      * Resend the email verification notification.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
+     *
      * @throws ValidationException
      */
     public function resend(Request $request)

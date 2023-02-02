@@ -8,7 +8,7 @@ use Illuminate\Validation\ValidationException;
 class VerifyEmailException extends ValidationException
 {
     /**
-     * @param  User $user
+     * @param  User  $user
      * @return static
      */
     public static function forUser(User $user)

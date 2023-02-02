@@ -24,7 +24,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            User::COLUMN_NAME => $this->faker->firstName . ' ' . $this->faker->lastName,
+            User::COLUMN_NAME => $this->faker->firstName.' '.$this->faker->lastName,
             User::COLUMN_EMAIL => $this->faker->unique()->safeEmail,
             User::COLUMN_EMAIL_VERIFIED_AT => now(),
             User::COLUMN_PASSWORD => Hash::make('password'),

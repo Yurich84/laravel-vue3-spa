@@ -36,7 +36,7 @@ class LoginController extends Controller
     /**
      * Attempt to log the user into the application.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return bool
      */
     protected function attemptLogin(Request $request)
@@ -61,7 +61,7 @@ class LoginController extends Controller
     /**
      * Send the response after the user was authenticated.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
      */
     protected function sendLoginResponse(Request $request)
@@ -76,7 +76,7 @@ class LoginController extends Controller
     /**
      * Get the failed login response instance.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return void
      *
      * @throws ValidationException
@@ -97,7 +97,7 @@ class LoginController extends Controller
     /**
      * Log the user out of the application.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return void
      */
     public function logout(Request $request)
@@ -110,7 +110,7 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return void
      */
     protected function validateLogin(Request $request): void

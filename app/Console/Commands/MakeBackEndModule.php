@@ -26,9 +26,11 @@ class MakeBackEndModule extends MakeModuleCommand
 
     /**
      * @param $module
+     *
      * @throws FileNotFoundException
      */
-    protected function create($module) {
+    protected function create($module)
+    {
         $this->files = new Filesystem();
         $this->module = $module;
         $this->module_path = app_path('Modules/'.$this->module);
@@ -43,6 +45,7 @@ class MakeBackEndModule extends MakeModuleCommand
      * Create a controller for the module.
      *
      * @return void
+     *
      * @throws FileNotFoundException
      */
     private function createController()
@@ -65,7 +68,8 @@ class MakeBackEndModule extends MakeModuleCommand
      *
      * @throws FileNotFoundException
      */
-    private function createRoutes() {
+    private function createRoutes()
+    {
         $path = $this->module_path.'/routes_api.php';
 
         if ($this->alreadyExists($path)) {

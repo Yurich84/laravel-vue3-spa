@@ -28,7 +28,7 @@ class AbstractRepository implements RepositoryInterface
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      * @return Model|null
      */
     public function get(int $id): ?Model
@@ -37,7 +37,7 @@ class AbstractRepository implements RepositoryInterface
     }
 
     /**
-     * @param array $data
+     * @param  array  $data
      * @return Model|null
      */
     public function create(array $data): ?Model
@@ -46,8 +46,8 @@ class AbstractRepository implements RepositoryInterface
     }
 
     /**
-     * @param array $data
-     * @param Model $model
+     * @param  array  $data
+     * @param  Model  $model
      * @return Model
      */
     public function update(array $data, Model $model): Model
@@ -60,6 +60,7 @@ class AbstractRepository implements RepositoryInterface
     /**
      * @param $id
      * @return bool
+     *
      * @throws \Exception
      */
     public function delete(int $id): bool

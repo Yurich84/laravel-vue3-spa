@@ -47,10 +47,11 @@ class MakeModuleCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param Filesystem $files
-     * @param MakeFrontEndModule $frontEndModule
-     * @param MakeBackEndModule $backEndModule
+     * @param  Filesystem  $files
+     * @param  MakeFrontEndModule  $frontEndModule
+     * @param  MakeBackEndModule  $backEndModule
      * @return void
+     *
      * @throws FileNotFoundException
      */
     public function handle(Filesystem $files, MakeFrontEndModule $frontEndModule, MakeBackEndModule $backEndModule)
@@ -70,7 +71,6 @@ class MakeModuleCommand extends Command
         $this->createFactory();
 
         $this->createTest();
-
     }
 
     /**
@@ -121,6 +121,7 @@ class MakeModuleCommand extends Command
      * Create a test file for the module.
      *
      * @return void
+     *
      * @throws FileNotFoundException
      */
     protected function createTest()

@@ -12,7 +12,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      *
-     * @param ProfileRequest $profileRequest
+     * @param  ProfileRequest  $profileRequest
      * @return JsonResponse
      */
     public function update(ProfileRequest $profileRequest)

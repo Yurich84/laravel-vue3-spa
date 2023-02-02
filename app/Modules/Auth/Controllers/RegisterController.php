@@ -27,7 +27,7 @@ class RegisterController extends Controller
     /**
      * The user has been registered.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @param  User  $user
      * @return JsonResponse
      */
