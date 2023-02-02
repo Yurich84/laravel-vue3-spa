@@ -21,7 +21,7 @@
                     <el-dropdown-menu>
                         <el-dropdown-item
                             divided
-                            @click.native="logout"
+                            @click="logout"
                         >
                             {{ $t('auth.logout.title') }}
                         </el-dropdown-item>

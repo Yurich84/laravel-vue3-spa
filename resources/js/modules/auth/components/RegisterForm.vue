@@ -4,7 +4,7 @@
         :model="form"
         :rules="rules"
         label-width="140px"
-        @keyup.enter.native="onSubmit"
+        @keyup.enter="onSubmit"
     >
         <el-form-item
             prop="name"
@@ -53,7 +53,7 @@
                 show-password
             />
         </el-form-item>
-        <el-form-item style="width:100%;">
+        <el-form-item class="w-100">
             <el-button
                 class="w-100"
                 :loading="loading"

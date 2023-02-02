@@ -5,7 +5,7 @@
         :rules="rules"
         hide-required-asterisk
         label-width="120px"
-        @keyup.enter.native="onSubmit"
+        @keyup.enter="onSubmit"
     >
         <el-form-item
             prop="email"
@@ -32,11 +32,11 @@
                 show-password
             />
         </el-form-item>
-        <el-form-item style="width:100%;">
+        <el-form-item class="w-100">
             <el-button
                 :loading="loading"
                 class="w-100"
-                @click.native="onSubmit"
+                @click="onSubmit"
             >
                 {{ $t('auth.login.submit_button') }}
             </el-button>

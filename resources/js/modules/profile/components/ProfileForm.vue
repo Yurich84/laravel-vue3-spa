@@ -31,7 +31,7 @@
                 type="email"
             />
         </el-form-item>
-        <el-form-item style="width:100%;">
+        <el-form-item class="w-100">
             <el-button
                 class="w-100"
                 type="success"
