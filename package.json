@@ -12,7 +12,7 @@
             "./node_modules/.bin/eslint -c .eslintrc.js --fix --max-warnings=0"
         ],
         "*.php": [
-            "vendor/bin/php-cs-fixer fix --diff --config=.php-cs-fixer.dist.php"
+            "./vendor/bin/pint --dirty"
         ]
     },
     "husky": {
