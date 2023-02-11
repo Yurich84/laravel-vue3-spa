@@ -58,7 +58,7 @@ const form = ref({})
 
 const rules = ref({
     name: [
-        { required:true, message: t('form.rules.required', { 'fieldName': dummyVariableSingular}), trigger: 'blur' }
+        { required:true, message: t('form.rules.required', { 'fieldName': 'name'}), trigger: 'blur' }
     ],
 })
 
