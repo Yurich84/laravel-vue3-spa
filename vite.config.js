@@ -3,6 +3,9 @@ import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
+    build: {
+        target: 'esnext',
+    },
     server: {
         hmr: {
             host: 'localhost',
