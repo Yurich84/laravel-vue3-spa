@@ -3,9 +3,6 @@ import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-    build: {
-        target: 'esnext',
-    },
     server: {
         hmr: {
             host: 'localhost',
@@ -39,5 +36,9 @@ export default defineConfig({
                 replacement: '$1',
             },
         ],
+    },
+    build: {
+        target: 'esnext',
+        chunkSizeWarningLimit: 1600,
     },
 })
