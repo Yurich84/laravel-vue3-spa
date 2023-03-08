@@ -1,28 +1,33 @@
-name: Check & fix styling
+name: Check styles
 
 on:
   push:
-    branches: [ todo_fix_this ]
+    branches:
+      - test
 
 jobs:
-    php-cs-fixer:
-        runs-on: ubuntu-latest
+  laravel-tests:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-              with:
-                  ref: ${{ github.head_ref }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            - name: Install Dependencies
-              run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          coverage: none
 
-            - name: Run PHP CS Fixer
-              uses: docker://oskarstark/php-cs-fixer-ga
-              with:
-                  args: --config=.php-cs-fixer.dist.php
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
 
-            - name: Commit changes
-              uses: stefanzweifel/git-auto-commit-action@v4
-              with:
-                  commit_message: Fix styling
+      - name: Copy environment file
+        run: cp .env.example .env
+
+      - name: Generate app key
+        run: php artisan key:generate
+
+      - name: Check styles
+        run: vendor/bin/pint --test

@@ -1,8 +1,9 @@
-name: Laravel
+name: Tests
 
 on:
   push:
-    branches: [ test ]
+    branches:
+      - test
 
 jobs:
   laravel-tests:
