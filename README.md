@@ -7,10 +7,8 @@
 <h1>This project under development!</h1>
 
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE)
-
 [<img alt="GitHub Workflow Status (main)" src="https://img.shields.io/github/actions/workflow/status/Yurich84/laravel-vue3-spa/laravel-unit-testing.yml?branch=main&label=Tests">](https://github.com/Yurich84/laravel-vue3-spa/actions)
-
-[<img alt="GitHub Workflow Status (main)" src="https://img.shields.io/github/actions/workflow/status/Yurich84/laravel-vue3-spa/php-cs-fixer.yml?branch=main&label=Tests">](https://github.com/Yurich84/laravel-vue3-spa/actions)
+[<img alt="GitHub Workflow Status (main)" src="https://img.shields.io/github/actions/workflow/status/Yurich84/laravel-vue3-spa/php-cs-fixer.yml?branch=main&label=CodeStyle">](https://github.com/Yurich84/laravel-vue3-spa/actions)
 
 
 #### This is a groundwork for a large modular SPA, that utilises Laravel, Vue, ElementUI. 
@@ -31,18 +29,18 @@ The main goals of the project are:
 
 ## Extensions
 
-- BackEnd: [Laravel 9](https://laravel.com/)
+- BackEnd: [Laravel 10](https://laravel.com/)
 - FrontEnd: [Vue3 Composition Api](https://vuejs.org) + [VueRouter](https://router.vuejs.org) + [Pinia](https://pinia.vuejs.org) + [VueI18n](https://kazupon.github.io/vue-i18n/)
 - Login using [Vue-Auth](https://websanova.com/docs/vue-auth/home), [Axios](https://github.com/mzabriskie/axios) and [Sanctum](https://laravel.com/docs/8.x/sanctum).
 - The api routes, are separate for each module, in **Modules/{ModuleName}/routes_api.php**
 - [ElementPlus](https://element-plus.org/) UI Kit 
 - [Lodash](https://lodash.com) js utilities
 - [Day.js](https://dayjs.com) time manipulations
-- [FontAwesome 5](http://fontawesome.io/icons/) icons
+- [FontAwesome 6](http://fontawesome.io/icons/) icons
 
 ## Install
-- `git clone https://github.com/Yurich84/laravel-vue-spa-skeleton.git`
-- `cd laravel-vue-spa-skeleton`
+- `git clone https://github.com/Yurich84/laravel-vue3-spa.git`
+- `cd /laravel-vue3-spa`
 - `composer install`
 - `cp .env.example .env` - copy .env file
 - set your DB credentials in `.env`
@@ -56,8 +54,8 @@ The main goals of the project are:
 `php artisan test`
 
 ## Usage
-- `npm run watch` or `npm run hot` - for hot reloading
-- `php artisan serve` and go [127.0.0.1:8000](http://127.0.0.1:8000)
+- `npm run dev` for hot reloading
+- `php artisan serve` and go [localhost:8000](http://localhost:8000)
 - Create new user and login.
 
 ### Creating module
