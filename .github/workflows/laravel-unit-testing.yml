@@ -6,8 +6,31 @@ on:
       - main
 
 jobs:
-  laravel-tests:
+  changes:
     runs-on: ubuntu-latest
+    name: Check changes
+    outputs:
+      src: ${{ steps.filter.outputs.src }}
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Add filter
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            src:
+              - 'app/**'
+              - 'routes/**'
+              - 'tests/**'
+              - '.github/**'
+
+  testing:
+    runs-on: ubuntu-latest
+    needs: changes
+    if: ${{ needs.changes.outputs.src == 'true' }}
 
     steps:
       - name: Checkout code
