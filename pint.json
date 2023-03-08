@@ -1,6 +1,7 @@
 {
     "preset": "laravel",
     "rules": {
-        "class_attributes_separation": false
+        "class_attributes_separation": false,
+        "no_superfluous_phpdoc_tags": false
     }
 }
