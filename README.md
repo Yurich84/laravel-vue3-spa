@@ -8,8 +8,8 @@
 
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE)
 
-[//]: # (![GitHub Workflow Status]&#40;https://img.shields.io/github/workflow/status/Yurich84/laravel-vue-spa-skeleton/Laravel?label=tests&#41;)
-[//]: # (![GitHub Workflow Status]&#40;https://img.shields.io/github/workflow/status/Yurich84/laravel-vue-spa-skeleton/Check%20&%20fix%20styling?label=style&#41;)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Yurich84/laravel-vue3-spa/Laravel?label=tests)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Yurich84/laravel-vue3-spa/Check%20&%20fix%20styling?label=style)
 
 #### This is a groundwork for a large modular SPA, that utilises Laravel, Vue, ElementUI. 
 #### CRUD generator is integrated in project creates standalone modules on the frontend and backend.
