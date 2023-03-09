@@ -4,12 +4,13 @@
 <img height="80" src="https://cdn.worldvectorlogo.com/logos/element-ui-1.svg">
 </p>
 
-<h1>This project under development!</h1>
+<div align="center">
 
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE)
 [<img alt="GitHub Workflow Status (main)" src="https://img.shields.io/github/actions/workflow/status/Yurich84/laravel-vue3-spa/laravel-unit-testing.yml?branch=main&label=Tests">](https://github.com/Yurich84/laravel-vue3-spa/actions)
 [<img alt="GitHub Workflow Status (main)" src="https://img.shields.io/github/actions/workflow/status/Yurich84/laravel-vue3-spa/php-cs-fixer.yml?branch=main&label=CodeStyle">](https://github.com/Yurich84/laravel-vue3-spa/actions)
 
+</div>
 
 #### This is a groundwork for a large modular SPA, that utilises Laravel, Vue, ElementUI. 
 #### CRUD generator is integrated in project creates standalone modules on the frontend and backend.
