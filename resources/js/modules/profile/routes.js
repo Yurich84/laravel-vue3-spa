@@ -1,10 +1,17 @@
 import Profile from './components/Profile.vue'
+import ChangePassword from './components/ChangePassword.vue'
 
 export const routes = [
     {
+        path: 'change-password',
+        name: 'profile.change-password',
+        component: ChangePassword,
+        hidden: true,
+    },
+    {
         path: 'profile',
-        name: 'Profile',
+        name: 'profile.edit',
         component: Profile,
-        icon: 'fa-solid fa-address-card'
+        hidden: true,
     },
 ]

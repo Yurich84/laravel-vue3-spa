@@ -19,11 +19,17 @@
                 </span>
                 <template #dropdown>
                     <el-dropdown-menu>
+                        <el-dropdown-item @click="$router.push({name: 'profile.edit'})">
+                            Edit profile
+                        </el-dropdown-item>
+                        <el-dropdown-item @click="$router.push({name: 'profile.change-password'})">
+                            Change password
+                        </el-dropdown-item>
                         <el-dropdown-item
                             divided
                             @click="logout"
                         >
-                            {{ $t('auth.logout.title') }}
+                            Log Out
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </template>

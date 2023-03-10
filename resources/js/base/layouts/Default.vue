@@ -33,4 +33,8 @@ import Child from '@/base/components/Child.vue'
 .el-breadcrumb {
     padding-bottom: 20px;
 }
+
+.title {
+    margin-bottom: 20px;
+}
 </style>

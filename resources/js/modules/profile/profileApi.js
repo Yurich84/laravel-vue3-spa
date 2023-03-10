@@ -8,4 +8,7 @@ export default {
         return axios.patch(API_ENDPOINT + '/profile', model)
     },
 
+    changePassword(data) {
+        return axios.patch(API_ENDPOINT + '/change-password', data)
+    },
 }

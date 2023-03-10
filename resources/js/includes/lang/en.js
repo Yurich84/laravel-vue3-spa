@@ -62,6 +62,8 @@ export const messages = {
         profile: {
             name: 'Name',
             email: 'Email',
+            edit: 'Edit profile',
+            change_password: 'Change password',
         }
     },
     ...enLocale
