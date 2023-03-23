@@ -84,7 +84,11 @@ function onSubmit(e) {
                     message: response.data.message,
                     type: response.data.type
                 })
-                if(response.data.type === 'success') emit('saved')
+                if(response.data.type === 'success') {
+                    auth.user().name = form.value.name
+                    auth.user().email = form.value.email
+                    emit('saved')
+                }
             }).catch((error) => {
                 if (error.response.data.errors) errors.record(error.response.data.errors)
             }).finally(() => loading.value = false)

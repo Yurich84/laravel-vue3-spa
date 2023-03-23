@@ -13,7 +13,7 @@
         </div>
         <div class="userinfo">
             <span>{{ sysUserName }}</span>
-            <el-dropdown>
+            <el-dropdown trigger="click">
                 <span class="el-dropdown-link userinfo-inner">
                     <img :src="sysUserAvatar">
                 </span>
