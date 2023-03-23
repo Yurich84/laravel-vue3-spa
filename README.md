@@ -20,7 +20,7 @@
 </p>
 
 The main goals of the project are:
-- to avoid hard cohesion between modules
+- to avoid high cohesion between modules
 - to form the basis for writing clean code
 - to be easy to expand
 - to avoid code duplication
