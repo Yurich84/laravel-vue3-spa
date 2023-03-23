@@ -18,5 +18,7 @@ return [
     'sent' => 'We have emailed your password reset link!',
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
+    'password_not_matched' => 'The :attribute is not match with your current password.',
+    'password_matches_old' => 'The :attribute is match with old password.',
 
 ];
