@@ -9,7 +9,7 @@
     >
         <el-form-item
             prop="name"
-            :label="$t('setting.profile.name')"
+            :label="$t('profile.name')"
             class="form-group"
             :error="$t(errors.get('name'))"
         >
@@ -21,7 +21,7 @@
         </el-form-item>
         <el-form-item
             prop="email"
-            :label="$t('setting.profile.email')"
+            :label="$t('profile.email')"
             class="form-group"
             :error="$t(errors.get('email'))"
         >
@@ -65,10 +65,10 @@ const form = ref({
 })
 const rules = ref({
     name: [
-        {required:true, message: t('form.rules.required', { 'fieldName': t('setting.profile.name')}), trigger: 'blur'}
+        {required:true, message: t('form.rules.required', { 'fieldName': t('profile.name')}), trigger: 'blur'}
     ],
     email: [
-        { required:true, message: t('form.rules.required', { 'fieldName': t('setting.profile.email')}), trigger: 'blur'},
+        { required:true, message: t('form.rules.required', { 'fieldName': t('profile.email')}), trigger: 'blur'},
         { type: 'email', message: t('form.rules.email'), trigger: ['blur', 'change'] }
     ],
 })

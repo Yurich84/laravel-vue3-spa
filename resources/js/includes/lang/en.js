@@ -58,13 +58,14 @@ export const messages = {
             button_cancel: 'Cancel',
         }
     },
-    setting: {
-        profile: {
-            name: 'Name',
-            email: 'Email',
-            edit: 'Edit profile',
-            change_password: 'Change password',
-        }
+    profile: {
+        name: 'Name',
+        email: 'Email',
+        edit: 'Edit profile',
+        change_password: 'Change password',
+        old_password: 'Old password',
+        new_password: 'New password',
+        confirm_password: 'Confirm password',
     },
     ...enLocale
 }

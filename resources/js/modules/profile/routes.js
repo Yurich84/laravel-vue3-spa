@@ -4,7 +4,7 @@ import ChangePassword from './components/ChangePassword.vue'
 export const routes = [
     {
         path: 'change-password',
-        name: 'profile.change-password',
+        name: 'profile.change_password',
         component: ChangePassword,
         hidden: true,
     },

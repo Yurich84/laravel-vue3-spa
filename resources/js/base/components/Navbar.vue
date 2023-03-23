@@ -22,7 +22,7 @@
                         <el-dropdown-item @click="$router.push({name: 'profile.edit'})">
                             Edit profile
                         </el-dropdown-item>
-                        <el-dropdown-item @click="$router.push({name: 'profile.change-password'})">
+                        <el-dropdown-item @click="$router.push({name: 'profile.change_password'})">
                             Change password
                         </el-dropdown-item>
                         <el-dropdown-item

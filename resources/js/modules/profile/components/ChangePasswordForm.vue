@@ -8,7 +8,7 @@
             @submit.prevent="passwordChange"
         >
             <el-form-item
-                label="Old password"
+                :label="$t('profile.old_password')"
                 prop="old_password"
                 :error="errors.get('old_password')"
             >
@@ -19,7 +19,7 @@
                 />
             </el-form-item>
             <el-form-item
-                label="New password"
+                :label="$t('profile.new_password')"
                 prop="password"
                 :error="errors.get('password')"
             >
@@ -30,7 +30,7 @@
                 />
             </el-form-item>
             <el-form-item
-                label="Confirm Password"
+                :label="$t('profile.confirm_password')"
                 prop="password_confirmation"
                 :error="errors.get('password_confirmation')"
             >
