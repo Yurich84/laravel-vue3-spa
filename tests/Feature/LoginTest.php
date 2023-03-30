@@ -9,16 +9,6 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
-    /** @var User */
-    protected $user;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-    }
-
     /** @test */
     public function authenticate()
     {

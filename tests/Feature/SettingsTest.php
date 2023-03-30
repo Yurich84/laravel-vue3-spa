@@ -3,21 +3,10 @@
 namespace Tests\Feature;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Tests\TestCase;
 
 class SettingsTest extends TestCase
 {
-    /** @var User */
-    protected $user;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-    }
-
     /** @test */
     public function update_profile_info()
     {
