@@ -100,7 +100,7 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->group(function () {
                 Route::view('/{any}', 'spa')
-                    ->where('any', '.*');
+                    ->where('any', '^(?!api).*');
             });
     }
 
