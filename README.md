@@ -12,7 +12,7 @@
 
 </div>
 
-#### This is a groundwork for a large modular SPA, that utilises Laravel, Vue, ElementUI. 
+#### This is a groundwork for a large modular SPA, that utilises Laravel, Vue, ElementPlus. 
 #### CRUD generator is integrated in project creates standalone modules on the frontend and backend.
 
 <p align="center">
