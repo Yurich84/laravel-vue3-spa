@@ -2,7 +2,7 @@
 
 namespace App\Modules\Setting\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Modules\Core\Controllers\Controller;
 use App\Models\User;
 use App\Modules\Setting\Requests\ChangePasswordRequest;
 use App\Modules\Setting\Requests\ProfileRequest;

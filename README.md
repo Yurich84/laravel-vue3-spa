@@ -30,7 +30,7 @@ The main goals of the project are:
 
 ## Extensions
 
-- Back-End: [Laravel 10](https://laravel.com/)
+- Back-End: [Laravel 11](https://laravel.com/)
 - Front-End: [Vue3 Composition Api](https://vuejs.org) + [VueRouter](https://router.vuejs.org) + [Pinia](https://pinia.vuejs.org) + [VueI18n](https://kazupon.github.io/vue-i18n/)
 - Login using [Vue-Auth](https://websanova.com/docs/vue-auth/home), [Axios](https://github.com/mzabriskie/axios) and [Sanctum](https://laravel.com/docs/8.x/sanctum).
 - The api routes, are separate for each module, in **Modules/{ModuleName}/routes_api.php**

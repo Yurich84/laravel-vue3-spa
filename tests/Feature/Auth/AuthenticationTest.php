@@ -2,9 +2,8 @@
 
 use App\Models\PersonalAccessToken;
 use App\Models\User;
-use Illuminate\Support\Facades\Config;
 
-test('authenticate', function () {
+test('users can authenticate', function () {
     $response = $this->postJson(route('login'), [
         'email' => $this->user->email,
         'password' => 'password',
@@ -29,6 +28,17 @@ test('authenticate', function () {
     ]);
 });
 
+test('users can not authenticate with invalid password', function () {
+    $user = User::factory()->create();
+
+    $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'wrong-password',
+    ]);
+
+    $this->assertGuest();
+});
+
 test('fetch the current user', function () {
     $this->actingAs($this->user)
         ->postJson(route('me'))
@@ -36,8 +46,7 @@ test('fetch the current user', function () {
         ->assertJsonPath('data.email', $this->user->email);
 });
 
-test('log out', function () {
-    Config::set('auth.defaults.guard', 'api');
+test('users can logout', function () {
 
     $response = $this->postJson(route('login'), [
         'email' => $this->user->email,
@@ -49,7 +58,7 @@ test('log out', function () {
 
     $this->withToken($token)
         ->postJson(route('logout'))
-        ->assertOk();
+        ->assertNoContent();
 
     $this->assertDatabaseMissing(PersonalAccessToken::TABLE_NAME, [
         PersonalAccessToken::COLUMN_NAME => 'spa',

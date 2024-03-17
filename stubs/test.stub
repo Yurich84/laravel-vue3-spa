@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Controller;
+use App\Modules\Core\Controllers\Controller;
 use App\Models\DummySingular;
 
 test('create dummyVariableSingular', function () {

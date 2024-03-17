@@ -2,7 +2,7 @@
 
 namespace DummyRootNamespaceModules\DummySingular\Controllers;
 
-use DummyRootNamespaceHttp\Controllers\Controller;
+use App\Modules\Core\Controllers\Controller;
 use DummyRootNamespaceModels\DummySingular;
 use DummyRootNamespaceModules\DummySingular\Requests\DummySingularRequest;
 use DummyRootNamespaceModules\DummySingular\Resources\DummySingularResource;

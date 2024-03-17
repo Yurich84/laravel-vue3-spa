@@ -2,26 +2,16 @@
 
 namespace App\Modules\Auth\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Modules\Core\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Validation\ValidationException;
 
-class VerificationController extends Controller
+class VerifyEmailController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
-    }
-
     /**
      * Mark the user's email address as verified.
      *
@@ -62,7 +52,7 @@ class VerificationController extends Controller
      */
     public function resend(Request $request)
     {
-        $this->validate($request, ['email' => 'required|email']);
+        $request->validate(['email' => 'required|email']);
 
         /** @var User $user */
         $user = User::where('email', $request->email)->first();

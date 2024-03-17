@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Controller;
+use App\Modules\Core\Controllers\Controller;
 
 test('update profile info', function () {
     $this->actingAs($this->user)

@@ -3,7 +3,7 @@
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-test('can register', function () {
+test('new user can register', function () {
     $response = $this->postJson(route('register'), [
         User::COLUMN_NAME => 'Test User',
         User::COLUMN_EMAIL => 'test@test.app',
@@ -24,7 +24,7 @@ test('can register', function () {
     ]);
 });
 
-test('can not register with existing email', function () {
+test('new user cannot register with existing email', function () {
     User::factory()->create(['email' => 'test@test.app']);
 
     $this->postJson(route('register'), [
@@ -33,6 +33,6 @@ test('can not register with existing email', function () {
         'password' => 'secret',
         'password_confirmation' => 'secret',
     ])
-    ->assertStatus(422)
-    ->assertJsonValidationErrors(['email']);
+        ->assertStatus(422)
+        ->assertJsonValidationErrors(['email']);
 });
