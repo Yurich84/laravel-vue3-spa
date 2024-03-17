@@ -25,7 +25,7 @@ class MakeBackEndModule extends MakeModuleCommand
     private $module_path;
 
     /**
-     * @param $module
+     * @param  $module
      *
      * @throws FileNotFoundException
      */

@@ -58,7 +58,7 @@ class AbstractRepository implements RepositoryInterface
     }
 
     /**
-     * @param $id
+     * @param  $id
      * @return bool
      *
      * @throws \Exception

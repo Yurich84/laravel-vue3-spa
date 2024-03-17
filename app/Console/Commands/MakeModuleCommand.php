@@ -166,8 +166,8 @@ class MakeModuleCommand extends Command
     }
 
     /**
-     * @param $stub
-     * @param $path
+     * @param  $stub
+     * @param  $path
      * @return void
      */
     protected function createFileWithStub($stub, $path)

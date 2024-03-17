@@ -12,9 +12,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable // implements MustVerifyEmail
 {
-    use HasFactory,
-        Notifiable,
-        HasApiTokens;
+    use HasApiTokens,
+        HasFactory,
+        Notifiable;
 
     const COLUMN_ID = 'id';
     const COLUMN_NAME = 'name';

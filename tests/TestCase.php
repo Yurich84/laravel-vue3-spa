@@ -10,8 +10,8 @@ use Laravel\Sanctum\Sanctum;
 
 abstract class TestCase extends BaseTestCase
 {
-    use RefreshDatabase;
     use CreatesApplication;
+    use RefreshDatabase;
 
     /** @var User */
     protected $user;
