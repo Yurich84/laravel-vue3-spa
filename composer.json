@@ -11,7 +11,7 @@
         "php": "^8.2",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^11.0",
+        "laravel/framework": "^v12.16",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8"
     },
@@ -21,10 +21,10 @@
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.29",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.1",
-        "pestphp/pest": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.0",
-        "spatie/laravel-ignition": "^2.4"
+        "nunomaduro/collision": "^v8.8.0",
+        "pestphp/pest": "v3.8.2",
+        "pestphp/pest-plugin-laravel": "^v3.2.0",
+        "spatie/laravel-ignition": "^2.9.1"
     },
     "config": {
         "optimize-autoloader": true,
