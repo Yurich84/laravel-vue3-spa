@@ -10,7 +10,7 @@ class AbstractRepository implements RepositoryInterface
     /**
      * @var string
      */
-    protected $class;
+    protected string $class;
 
     /**
      * @var Model
@@ -23,7 +23,7 @@ class AbstractRepository implements RepositoryInterface
     public function __construct()
     {
         if ($this->class) {
-            $this->model = new $this->class();
+            $this->model = new $this->class;
         }
     }
 

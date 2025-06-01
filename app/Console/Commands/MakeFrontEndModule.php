@@ -15,7 +15,7 @@ class MakeFrontEndModule extends MakeModuleCommand
     public function __construct()
     {
         parent::__construct();
-        $this->output = new ConsoleOutput();
+        $this->output = new ConsoleOutput;
         $this->components = new Factory($this->output);
     }
 
@@ -31,7 +31,7 @@ class MakeFrontEndModule extends MakeModuleCommand
      */
     protected function create($module)
     {
-        $this->files = new Filesystem();
+        $this->files = new Filesystem;
         $this->module = $module;
         $this->module_path = base_path('resources/js/modules/'.lcfirst($this->module));
 

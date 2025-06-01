@@ -9,5 +9,5 @@ class UserRepository extends AbstractRepository
     /**
      * @var string
      */
-    protected $class = User::class;
+    protected string $class = User::class;
 }
