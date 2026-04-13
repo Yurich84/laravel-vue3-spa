@@ -3,7 +3,7 @@ import pluginVue from 'eslint-plugin-vue'
 
 export default [
     js.configs.recommended,
-    ...pluginVue.configs['flat/vue3-recommended'],
+    ...pluginVue.configs['flat/recommended'],
     {
         rules: {
             'indent': ['warn', 4],
@@ -18,6 +18,11 @@ export default [
             'vue/require-valid-default-prop': 'off',
             'vue/require-explicit-emits': 'off',
             'vue/no-multiple-template-root': 'off',
+            // Rules not present in eslint-plugin-vue v7 (pre-migration) — disabled to preserve old behavior
+            'vue/multi-word-component-names': 'off',
+            'vue/valid-define-emits': 'off',
+            // js.configs.recommended adds no-unused-vars; was not enabled pre-migration
+            'no-unused-vars': 'off',
         },
     },
 ]

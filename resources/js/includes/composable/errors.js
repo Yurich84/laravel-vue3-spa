@@ -16,7 +16,7 @@ export function useErrors() {
     }
 
     function has(field) {
-        return errors.value.hasOwnProperty(field)
+        return Object.hasOwn(errors.value, field)
     }
 
     function get(field) {
