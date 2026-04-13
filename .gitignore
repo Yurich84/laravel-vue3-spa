@@ -17,3 +17,5 @@ npm-debug.log
 yarn-error.log
 .idea
 .php-cs-fixer.cache
+package-lock.json
+bun-error.log
