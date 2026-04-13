@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1fdf7431543ddeab2bacc0d8cc1fa659",
+    "content-hash": "21eab9e278bf793ce982cfe62d40558d",
     "packages": [
         {
             "name": "brick/math",
@@ -6399,6 +6399,72 @@
             "time": "2025-03-19T14:43:43+00:00"
         },
         {
+            "name": "laravel/boost",
+            "version": "v2.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/boost.git",
+                "reference": "841d52905728cfac9f93c778a1758e740ce9a367"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/boost/zipball/841d52905728cfac9f93c778a1758e740ce9a367",
+                "reference": "841d52905728cfac9f93c778a1758e740ce9a367",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.9",
+                "illuminate/console": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/contracts": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/routing": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/support": "^11.45.3|^12.41.1|^13.0",
+                "laravel/mcp": "^0.5.1|^0.6.0",
+                "laravel/prompts": "^0.3.10",
+                "laravel/roster": "^0.5.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.27.0",
+                "mockery/mockery": "^1.6.12",
+                "orchestra/testbench": "^9.15.0|^10.6|^11.0",
+                "pestphp/pest": "^2.36.0|^3.8.4|^4.1.5",
+                "phpstan/phpstan": "^2.1.27",
+                "rector/rector": "^2.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Boost\\BoostServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Boost\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Boost accelerates AI-assisted development by providing the essential context and structure that AI needs to generate high-quality, Laravel-specific code.",
+            "homepage": "https://github.com/laravel/boost",
+            "keywords": [
+                "ai",
+                "dev",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/boost/issues",
+                "source": "https://github.com/laravel/boost"
+            },
+            "time": "2026-04-10T15:59:10+00:00"
+        },
+        {
             "name": "laravel/breeze",
             "version": "v2.4.1",
             "source": {
@@ -6458,6 +6524,79 @@
                 "source": "https://github.com/laravel/breeze"
             },
             "time": "2026-03-10T19:59:01+00:00"
+        },
+        {
+            "name": "laravel/mcp",
+            "version": "v0.6.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/mcp.git",
+                "reference": "583a6282bf0f074d754f7ff5cd1fff9d34244691"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/mcp/zipball/583a6282bf0f074d754f7ff5cd1fff9d34244691",
+                "reference": "583a6282bf0f074d754f7ff5cd1fff9d34244691",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "illuminate/console": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/container": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/contracts": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/http": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/json-schema": "^12.41.1|^13.0",
+                "illuminate/routing": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/support": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/validation": "^11.45.3|^12.41.1|^13.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.20",
+                "orchestra/testbench": "^9.15|^10.8|^11.0",
+                "pestphp/pest": "^3.8.5|^4.3.2",
+                "phpstan/phpstan": "^2.1.27",
+                "rector/rector": "^2.2.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Mcp": "Laravel\\Mcp\\Server\\Facades\\Mcp"
+                    },
+                    "providers": [
+                        "Laravel\\Mcp\\Server\\McpServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Mcp\\": "src/",
+                    "Laravel\\Mcp\\Server\\": "src/Server/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Rapidly build MCP servers for your Laravel applications.",
+            "homepage": "https://github.com/laravel/mcp",
+            "keywords": [
+                "laravel",
+                "mcp"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/mcp/issues",
+                "source": "https://github.com/laravel/mcp"
+            },
+            "time": "2026-03-30T19:17:10+00:00"
         },
         {
             "name": "laravel/pint",
@@ -6526,6 +6665,67 @@
                 "source": "https://github.com/laravel/pint"
             },
             "time": "2026-03-12T15:51:39+00:00"
+        },
+        {
+            "name": "laravel/roster",
+            "version": "v0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/roster.git",
+                "reference": "5089de7615f72f78e831590ff9d0435fed0102bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/roster/zipball/5089de7615f72f78e831590ff9d0435fed0102bb",
+                "reference": "5089de7615f72f78e831590ff9d0435fed0102bb",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^11.0|^12.0|^13.0",
+                "illuminate/contracts": "^11.0|^12.0|^13.0",
+                "illuminate/routing": "^11.0|^12.0|^13.0",
+                "illuminate/support": "^11.0|^12.0|^13.0",
+                "php": "^8.2",
+                "symfony/yaml": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.14",
+                "mockery/mockery": "^1.6",
+                "orchestra/testbench": "^9.0|^10.0|^11.0",
+                "pestphp/pest": "^3.0|^4.1",
+                "phpstan/phpstan": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Roster\\RosterServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Roster\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Detect packages & approaches in use within a Laravel project",
+            "homepage": "https://github.com/laravel/roster",
+            "keywords": [
+                "dev",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/roster/issues",
+                "source": "https://github.com/laravel/roster"
+            },
+            "time": "2026-03-05T07:58:43+00:00"
         },
         {
             "name": "laravel/sail",
@@ -6828,6 +7028,104 @@
                 }
             ],
             "time": "2026-04-06T19:25:53+00:00"
+        },
+        {
+            "name": "nunomaduro/pao",
+            "version": "v0.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nunomaduro/pao.git",
+                "reference": "d6370bee6d67150adab876d56ccfb287f98b9371"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nunomaduro/pao/zipball/d6370bee6d67150adab876d56ccfb287f98b9371",
+                "reference": "d6370bee6d67150adab876d56ccfb287f98b9371",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.3",
+                "shipfastlabs/agent-detector": "^1.1.2"
+            },
+            "conflict": {
+                "laravel/framework": "<12.0",
+                "nunomaduro/collision": "<8.9.2",
+                "pestphp/pest": "<4.4.3 || >=6.0",
+                "phpunit/phpunit": "<12.5.14 || >=13.0.0 <13.0.5 || >=14.0"
+            },
+            "require-dev": {
+                "brianium/paratest": "^7.20.0",
+                "laravel/pint": "^1.29.0",
+                "orchestra/testbench": "^10.11.0 || ^11.1.0",
+                "pestphp/pest": "^4.4.6 || ^5.0.0",
+                "pestphp/pest-plugin-type-coverage": "^4.0.3 || ^5.0.0",
+                "phpstan/phpstan": "^2.1.46",
+                "rector/rector": "^2.4.1",
+                "symfony/process": "^7.4.5 || ^8.1.0",
+                "symfony/var-dumper": "^7.4.6 || ^8.0.8"
+            },
+            "type": "library",
+            "extra": {
+                "pest": {
+                    "plugins": [
+                        "Pao\\Drivers\\Pest\\Plugin"
+                    ]
+                },
+                "laravel": {
+                    "providers": [
+                        "Pao\\Laravel\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Autoload.php"
+                ],
+                "psr-4": {
+                    "Pao\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "Agent-optimized output for PHP testing tools",
+            "keywords": [
+                "Agent",
+                "PHPStan",
+                "dev",
+                "json",
+                "paratest",
+                "pest",
+                "php",
+                "phpunit",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/nunomaduro/pao/issues",
+                "source": "https://github.com/nunomaduro/pao/tree/v0.1.7"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2026-04-10T15:41:53+00:00"
         },
         {
             "name": "pestphp/pest",
@@ -9146,6 +9444,73 @@
             "time": "2026-02-06T04:52:52+00:00"
         },
         {
+            "name": "shipfastlabs/agent-detector",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shipfastlabs/agent-detector.git",
+                "reference": "98abb0aa0950e62b9125143daad171ef42cb467d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shipfastlabs/agent-detector/zipball/98abb0aa0950e62b9125143daad171ef42cb467d",
+                "reference": "98abb0aa0950e62b9125143daad171ef42cb467d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.24.0",
+                "pestphp/pest": "^3.8.5|^4.1.0",
+                "pestphp/pest-plugin-type-coverage": "^3.0|^4.0.2",
+                "phpstan/phpstan": "^2.1.26",
+                "rector/rector": "^2.1.7",
+                "symfony/var-dumper": "^7.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "AgentDetector\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pushpak Chahjed",
+                    "email": "pushpak1300@gmail.com"
+                }
+            ],
+            "description": "Detect if code is running in an AI agent or automated development environment",
+            "keywords": [
+                "Agent",
+                "ai",
+                "automation",
+                "claude",
+                "cursor",
+                "detection",
+                "devin",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/shipfastlabs/agent-detector/issues",
+                "source": "https://github.com/shipfastlabs/agent-detector/tree/v1.1.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/pushpak1300",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-04-09T14:17:25+00:00"
+        },
+        {
             "name": "staabm/side-effects-detector",
             "version": "1.0.5",
             "source": {
@@ -9453,5 +9818,5 @@
         "php": "^8.5"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
