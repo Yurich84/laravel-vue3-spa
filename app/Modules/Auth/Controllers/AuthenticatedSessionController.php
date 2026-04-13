@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Modules\Auth\Controllers;
 
 use App\Modules\Auth\Requests\LoginSessionRequest;
 use App\Modules\Core\Controllers\Controller;

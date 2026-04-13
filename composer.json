@@ -1,30 +1,27 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The skeleton application for the Laravel and Vue3.",
     "keywords": [
         "framework",
         "laravel"
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
-        "ext-json": "*",
-        "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^v12.16",
+        "php": "^8.5",
+        "laravel/framework": "^v13.4",
         "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^v3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "laravel/breeze": "^2.0",
-        "laravel/pint": "^1.13",
-        "laravel/sail": "^1.29",
+        "laravel/breeze": "^v2.3",
+        "laravel/pint": "^1.29",
+        "laravel/sail": "^v1.56",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^v8.8.0",
-        "pestphp/pest": "v3.8.2",
-        "pestphp/pest-plugin-laravel": "^v3.2.0",
-        "spatie/laravel-ignition": "^2.9.1"
+        "nunomaduro/collision": "^v8.9",
+        "pestphp/pest": "^5.0",
+        "pestphp/pest-plugin-laravel": "^5.0"
     },
     "config": {
         "optimize-autoloader": true,
