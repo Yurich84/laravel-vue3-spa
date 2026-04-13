@@ -20,7 +20,6 @@ foreach ($modules as $module) {
     if (file_exists($routesPath)) {
         Route::prefix(API_PREFIX)
             ->middleware(['auth:sanctum'])
-            ->namespace("\\App\\Modules\\$module\Controllers")
             ->group($routesPath);
     }
 }

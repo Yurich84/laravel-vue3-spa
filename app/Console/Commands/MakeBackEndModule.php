@@ -35,31 +35,33 @@ class MakeBackEndModule extends MakeModuleCommand
         $this->module = $module;
         $this->module_path = app_path('Modules/'.$this->module);
 
-        $this->createController();
+        $this->createActions();
         $this->createRoutes();
         $this->createRequest();
         $this->createResource();
     }
 
     /**
-     * Create a controller for the module.
-     *
-     * @return void
+     * Create action classes for the module.
      *
      * @throws FileNotFoundException
      */
-    private function createController()
+    private function createActions(): void
     {
-        $path = $this->module_path."/Controllers/{$this->module}Controller.php";
+        $actions = ['Index', 'Store', 'Show', 'Update', 'Destroy'];
 
-        if ($this->alreadyExists($path)) {
-            $this->components->error('Controller already exists!');
-        } else {
-            $stub = $this->files->get(base_path('stubs/backEnd/controller.api.stub'));
+        foreach ($actions as $action) {
+            $path = $this->module_path."/Actions/{$this->module}{$action}.php";
 
-            $this->createFileWithStub($stub, $path);
+            if ($this->alreadyExists($path)) {
+                $this->components->error("{$this->module}{$action} already exists!");
+            } else {
+                $stub = $this->files->get(base_path('stubs/backEnd/action.'.strtolower($action).'.stub'));
 
-            $this->components->info('Controller created successfully.');
+                $this->createFileWithStub($stub, $path);
+
+                $this->components->info("{$this->module}{$action} created successfully.");
+            }
         }
     }
 

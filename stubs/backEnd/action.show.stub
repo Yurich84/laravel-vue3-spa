@@ -1,0 +1,17 @@
+<?php
+
+namespace DummyRootNamespaceModules\DummySingular\Actions;
+
+use DummyRootNamespaceModels\DummySingular;
+use DummyRootNamespaceModules\DummySingular\Resources\DummySingularResource;
+use Lorisleiva\Actions\Concerns\AsController;
+
+class DummySingularShow
+{
+    use AsController;
+
+    public function handle(DummySingular $dummyVariableSingular): DummySingularResource
+    {
+        return new DummySingularResource($dummyVariableSingular);
+    }
+}

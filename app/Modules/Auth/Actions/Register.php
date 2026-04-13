@@ -1,30 +1,30 @@
 <?php
 
-namespace App\Modules\Auth\Controllers;
+namespace App\Modules\Auth\Actions;
 
 use App\Models\User;
-use App\Modules\Core\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Lorisleiva\Actions\ActionRequest;
+use Lorisleiva\Actions\Concerns\AsController;
 
-class RegisteredUserController extends Controller
+class Register
 {
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request): JsonResponse
+    use AsController;
+
+    public function rules(): array
     {
-        $request->validate([
+        return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        ];
+    }
 
+    public function handle(ActionRequest $request): JsonResponse
+    {
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

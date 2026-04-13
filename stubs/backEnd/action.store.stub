@@ -1,0 +1,24 @@
+<?php
+
+namespace DummyRootNamespaceModules\DummySingular\Actions;
+
+use App\Enums\ResponseType;
+use DummyRootNamespaceModels\DummySingular;
+use DummyRootNamespaceModules\DummySingular\Requests\DummySingularRequest;
+use Illuminate\Http\JsonResponse;
+use Lorisleiva\Actions\Concerns\AsController;
+
+class DummySingularStore
+{
+    use AsController;
+
+    public function handle(DummySingularRequest $request, DummySingular $dummyVariableSingular): JsonResponse
+    {
+        $dummyVariableSingular->fill($request->validated())->save();
+
+        return response()->json([
+            'type' => ResponseType::Success,
+            'message' => __('messages.created'),
+        ]);
+    }
+}

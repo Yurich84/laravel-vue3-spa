@@ -1,5 +1,16 @@
 <?php
 
+use DummyRootNamespaceModules\DummySingular\Actions\DummySingularDestroy;
+use DummyRootNamespaceModules\DummySingular\Actions\DummySingularIndex;
+use DummyRootNamespaceModules\DummySingular\Actions\DummySingularShow;
+use DummyRootNamespaceModules\DummySingular\Actions\DummySingularStore;
+use DummyRootNamespaceModules\DummySingular\Actions\DummySingularUpdate;
 use Illuminate\Support\Facades\Route;
 
-Route::apiResource('dummyVariablePlural', 'DummySingularController');
+Route::prefix('dummyVariablePlural')->as('dummyVariablePlural.')->group(function () {
+    Route::get('/', DummySingularIndex::class)->name('index');
+    Route::post('/', DummySingularStore::class)->name('store');
+    Route::get('/{dummyVariableSingular}', DummySingularShow::class)->name('show');
+    Route::put('/{dummyVariableSingular}', DummySingularUpdate::class)->name('update');
+    Route::delete('/{dummyVariableSingular}', DummySingularDestroy::class)->name('destroy');
+});

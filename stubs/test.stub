@@ -1,6 +1,6 @@
 <?php
 
-use App\Modules\Core\Controllers\Controller;
+use App\Enums\ResponseType;
 use App\Models\DummySingular;
 
 test('create dummyVariableSingular', function () {
@@ -9,7 +9,7 @@ test('create dummyVariableSingular', function () {
             'name' => 'Lorem',
         ])
         ->assertSuccessful()
-        ->assertJson(['type' => Controller::RESPONSE_TYPE_SUCCESS]);
+        ->assertJson(['type' => ResponseType::Success->value]);
 
     $this->assertDatabaseHas('dummyVariablePlural', [
         'name' => 'Lorem',
@@ -24,7 +24,7 @@ test('update dummyVariableSingular', function () {
             'name' => 'Updated dummyVariableSingular',
         ])
         ->assertSuccessful()
-        ->assertJson(['type' => Controller::RESPONSE_TYPE_SUCCESS]);
+        ->assertJson(['type' => ResponseType::Success->value]);
 
     $this->assertDatabaseHas('dummyVariablePlural', [
         'id' => $dummyVariableSingular->id,
@@ -73,7 +73,7 @@ test('delete dummyVariableSingular', function () {
     $this->actingAs($this->user)
         ->deleteJson(route('dummyVariablePlural.update', $dummyVariableSingular->id))
         ->assertSuccessful()
-        ->assertJson(['type' => Controller::RESPONSE_TYPE_SUCCESS]);
+        ->assertJson(['type' => ResponseType::Success->value]);
 
     $this->assertDatabaseMissing('dummyVariablePlural', [
         'id' => $dummyVariableSingular->id,

@@ -1,0 +1,23 @@
+<?php
+
+namespace DummyRootNamespaceModules\DummySingular\Actions;
+
+use App\Enums\ResponseType;
+use DummyRootNamespaceModels\DummySingular;
+use Illuminate\Http\JsonResponse;
+use Lorisleiva\Actions\Concerns\AsController;
+
+class DummySingularDestroy
+{
+    use AsController;
+
+    public function handle(DummySingular $dummyVariableSingular): JsonResponse
+    {
+        $dummyVariableSingular->delete();
+
+        return response()->json([
+            'type' => ResponseType::Success,
+            'message' => __('messages.deleted'),
+        ]);
+    }
+}
