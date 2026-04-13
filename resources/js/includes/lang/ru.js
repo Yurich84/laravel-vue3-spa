@@ -1,4 +1,4 @@
-import ruLocale from 'element-plus/lib/locale/lang/ru'
+import ruLocale from 'element-plus/es/locale/lang/ru'
 
 export const messages = {
     global: {
