@@ -2,6 +2,7 @@
 
 namespace DummyRootNamespaceModules\DummySingular\Controllers;
 
+use App\Enums\ResponseType;
 use App\Modules\Core\Controllers\Controller;
 use DummyRootNamespaceModels\DummySingular;
 use DummyRootNamespaceModules\DummySingular\Requests\DummySingularRequest;
@@ -27,7 +28,7 @@ class DummySingularController extends Controller
 
         $resource = DummySingular::query()
             ->when($request->filled('search'), function (Builder $q) use ($request) {
-                $q->where(DummySingular::COLUMN_NAME, 'like', '%'.$request->search.'%');
+                $q->where('name', 'like', '%'.$request->search.'%');
             })
             ->orderBy($column, $order)->paginate($pageSize);
 
@@ -47,7 +48,7 @@ class DummySingularController extends Controller
         $dummyVariableSingular->fill($data)->save();
 
         return response()->json([
-            'type' => self::RESPONSE_TYPE_SUCCESS,
+            'type' => ResponseType::Success->value,
             'message' => 'Successfully created',
         ]);
     }
@@ -76,7 +77,7 @@ class DummySingularController extends Controller
         $dummyVariableSingular->fill($data)->save();
 
         return response()->json([
-            'type' => self::RESPONSE_TYPE_SUCCESS,
+            'type' => ResponseType::Success->value,
             'message' => 'Successfully updated',
         ]);
     }
@@ -94,7 +95,7 @@ class DummySingularController extends Controller
         $dummyVariableSingular->delete();
 
         return response()->json([
-            'type' => self::RESPONSE_TYPE_SUCCESS,
+            'type' => ResponseType::Success->value,
             'message' => 'Successfully deleted',
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Setting\Controllers;
 
+use App\Enums\ResponseType;
 use App\Models\User;
 use App\Modules\Core\Controllers\Controller;
 use App\Modules\Setting\Requests\ChangePasswordRequest;
@@ -24,7 +25,7 @@ class ProfileController extends Controller
         $user->fill($profileRequest->validated())->save();
 
         return response()->json([
-            'type' => self::RESPONSE_TYPE_SUCCESS,
+            'type' => ResponseType::Success->value,
             'message' => 'Successfully updated',
         ]);
     }
@@ -44,7 +45,7 @@ class ProfileController extends Controller
         $user->save();
 
         return response()->json([
-            'type' => self::RESPONSE_TYPE_SUCCESS,
+            'type' => ResponseType::Success->value,
             'message' => 'Successfully updated',
         ]);
     }

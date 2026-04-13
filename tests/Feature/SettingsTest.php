@@ -1,6 +1,6 @@
 <?php
 
-use App\Modules\Core\Controllers\Controller;
+use App\Enums\ResponseType;
 
 test('update profile info', function () {
     $this->actingAs($this->user)
@@ -9,7 +9,7 @@ test('update profile info', function () {
             'email' => 'test@test.app',
         ])
         ->assertSuccessful()
-        ->assertJson(['type' => Controller::RESPONSE_TYPE_SUCCESS]);
+        ->assertJson(['type' => ResponseType::Success->value]);
 
     $this->assertDatabaseHas('users', [
         'id' => $this->user->id,

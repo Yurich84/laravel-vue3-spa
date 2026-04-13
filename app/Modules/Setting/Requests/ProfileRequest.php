@@ -2,7 +2,6 @@
 
 namespace App\Modules\Setting\Requests;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileRequest extends FormRequest
@@ -25,8 +24,8 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            User::COLUMN_NAME => 'required|string',
-            User::COLUMN_EMAIL => 'required|email|unique:users,email,'.auth()->id(),
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,'.auth()->id(),
         ];
     }
 }

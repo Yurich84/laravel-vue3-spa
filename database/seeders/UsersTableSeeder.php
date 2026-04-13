@@ -14,6 +14,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->state([User::COLUMN_EMAIL => 'user@app.com'])->create();
+        User::factory()->state(['email' => 'user@app.com'])->create();
     }
 }

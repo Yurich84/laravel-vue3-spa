@@ -24,11 +24,11 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            User::COLUMN_NAME => $this->faker->firstName.' '.$this->faker->lastName,
-            User::COLUMN_EMAIL => $this->faker->unique()->safeEmail,
-            User::COLUMN_EMAIL_VERIFIED_AT => now(),
-            User::COLUMN_PASSWORD => Hash::make('password'),
-            User::COLUMN_REMEMBER_TOKEN => Str::random(10),
+            'name' => $this->faker->firstName.' '.$this->faker->lastName,
+            'email' => $this->faker->unique()->safeEmail,
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
         ];
     }
 }

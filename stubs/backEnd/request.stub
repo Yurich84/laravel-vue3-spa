@@ -2,7 +2,6 @@
 
 namespace DummyRootNamespaceModules\DummySingular\Requests;
 
-use DummyRootNamespaceModels\DummySingular;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DummySingularRequest extends FormRequest
@@ -25,7 +24,7 @@ class DummySingularRequest extends FormRequest
     public function rules()
     {
         return [
-            DummySingular::COLUMN_NAME => 'required|string',
+            'name' => 'required|string',
         ];
     }
 }
