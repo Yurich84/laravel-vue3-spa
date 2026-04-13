@@ -1,0 +1,20 @@
+<?php
+
+use App\Enums\ResponseType;
+use App\Models\DummySingular;
+
+test('delete dummyVariableSingular', function () {
+    $dummyVariableSingular = DummySingular::factory()->create([
+        'name' => 'DummySingular for delete',
+    ]);
+
+    $this->actingAs($this->user)
+        ->deleteJson(route('dummyVariablePlural.destroy', $dummyVariableSingular->id))
+        ->assertSuccessful()
+        ->assertJson(['type' => ResponseType::Success->value]);
+
+    $this->assertDatabaseMissing('dummyVariablePlural', [
+        'id' => $dummyVariableSingular->id,
+        'name' => 'DummySingular for delete',
+    ]);
+});

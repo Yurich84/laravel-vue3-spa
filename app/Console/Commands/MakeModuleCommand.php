@@ -118,7 +118,7 @@ class MakeModuleCommand extends Command
     }
 
     /**
-     * Create a test file for the module.
+     * Create test files for the module.
      *
      * @return void
      *
@@ -126,16 +126,20 @@ class MakeModuleCommand extends Command
      */
     protected function createTest()
     {
-        $path = base_path('tests/Feature/'.$this->module.'Test.php');
+        $actions = ['Index', 'Store', 'Show', 'Update', 'Destroy'];
 
-        if ($this->alreadyExists($path)) {
-            $this->error('Test file already exists!');
-        } else {
-            $stub = (new Filesystem)->get(base_path('stubs/test.stub'));
+        foreach ($actions as $action) {
+            $path = app_path("Modules/{$this->module}/Tests/{$this->module}{$action}Test.php");
 
-            $this->createFileWithStub($stub, $path);
+            if ($this->alreadyExists($path)) {
+                $this->error("{$this->module}{$action}Test already exists!");
+            } else {
+                $stub = (new Filesystem)->get(base_path('stubs/backEnd/test.'.strtolower($action).'.stub'));
 
-            $this->components->info('Tests created successfully.');
+                $this->createFileWithStub($stub, $path);
+
+                $this->components->info("{$this->module}{$action}Test created successfully.");
+            }
         }
     }
 
