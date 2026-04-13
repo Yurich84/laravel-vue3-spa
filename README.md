@@ -37,7 +37,7 @@ The main goals of the project are:
 - [ElementPlus](https://element-plus.org/) UI Kit 
 - [Lodash](https://lodash.com) js utilities
 - [Day.js](https://dayjs.com) time manipulations
-- [FontAwesome 6](http://fontawesome.io/icons/) icons
+- [FontAwesome 7](http://fontawesome.io/icons/) icons
 
 ## Install
 - `git clone https://github.com/Yurich84/laravel-vue3-spa.git`
@@ -47,7 +47,7 @@ The main goals of the project are:
 - set your DB credentials in `.env`
 - `php artisan key:generate`
 - `php artisan migrate`
-- `yarn install`
+- `bun install`
 
 ## Testing
 
@@ -55,7 +55,7 @@ The main goals of the project are:
 `php artisan test`
 
 ## Usage
-- `npm run dev` for hot reloading
+- `bun run dev` for hot reloading
 - `php artisan serve` and go [localhost:8000](http://localhost:8000)
 - Create new user and login.
 
