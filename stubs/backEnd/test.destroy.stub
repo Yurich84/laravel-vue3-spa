@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Enums\ResponseType;
 use App\Models\DummySingular;
 
-test('delete dummyVariableSingular', function () {
+test('delete dummyVariableSingular', function (): void {
     $dummyVariableSingular = DummySingular::factory()->create([
         'name' => 'DummySingular for delete',
     ]);

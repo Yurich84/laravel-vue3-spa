@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Models\DummySingular;
 
-test('show dummyVariableSingular', function () {
+test('show dummyVariableSingular', function (): void {
     $dummyVariableSingular = DummySingular::factory()->create();
 
     $this->actingAs($this->user)

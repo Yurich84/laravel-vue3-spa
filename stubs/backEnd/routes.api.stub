@@ -9,7 +9,7 @@ use DummyRootNamespaceModules\DummySingular\Actions\DummySingularStore;
 use DummyRootNamespaceModules\DummySingular\Actions\DummySingularUpdate;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('dummyVariablePlural')->as('dummyVariablePlural.')->group(function () {
+Route::prefix('dummyVariablePlural')->as('dummyVariablePlural.')->group(function (): void {
     Route::get('/', DummySingularIndex::class)->name('index');
     Route::post('/', DummySingularStore::class)->name('store');
     Route::get('/{dummyVariableSingular}', DummySingularShow::class)->name('show');
