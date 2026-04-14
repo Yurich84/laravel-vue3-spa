@@ -4,35 +4,28 @@ namespace App\Models;
 
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Attributes\Appends;
+use Illuminate\Database\Eloquent\Attributes\Guarded;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+#[Appends([
+    'avatar',
+])]
+#[Guarded([
+    'id',
+])]
+#[Hidden([
+    'password', 'remember_token',
+])]
 class User extends Authenticatable // implements MustVerifyEmail
 {
-    use HasApiTokens,
-        HasFactory,
-        Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [
-        'id',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that should be cast to native types.
@@ -44,20 +37,9 @@ class User extends Authenticatable // implements MustVerifyEmail
     ];
 
     /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'avatar',
-    ];
-
-    /**
      * Get the profile photo URL attribute.
-     *
-     * @return string
      */
-    public function getAvatarAttribute()
+    protected function getAvatarAttribute(): string
     {
         return 'https://www.gravatar.com/avatar/'.md5(strtolower($this->email)).'.jpg?s=200&d=mm';
     }
@@ -66,19 +48,16 @@ class User extends Authenticatable // implements MustVerifyEmail
      * Send the password reset notification.
      *
      * @param  string  $token
-     * @return void
      */
-    public function sendPasswordResetNotification($token)
+    public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPassword($token));
     }
 
     /**
      * Send the email verification notification.
-     *
-     * @return void
      */
-    public function sendEmailVerificationNotification()
+    public function sendEmailVerificationNotification(): void
     {
         $this->notify(new VerifyEmail);
     }

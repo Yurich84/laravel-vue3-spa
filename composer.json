@@ -15,16 +15,20 @@
         "lorisleiva/laravel-actions": "^2.10"
     },
     "require-dev": {
+        "driftingly/rector-laravel": "^2.3",
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.9",
         "laravel/boost": "^2.4",
         "laravel/breeze": "^v2.3",
+        "laravel/pail": "^1.2",
         "laravel/pint": "^1.29",
         "laravel/sail": "^v1.56",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^v8.9",
         "nunomaduro/pao": "^0.1.5",
         "pestphp/pest": "^5.0",
-        "pestphp/pest-plugin-laravel": "^5.0"
+        "pestphp/pest-plugin-laravel": "^5.0",
+        "rector/rector": "^2.3.9"
     },
     "config": {
         "optimize-autoloader": true,
@@ -76,8 +80,28 @@
             "@php artisan config:cache",
             "@php artisan route:cache"
         ],
-        "test": "@php artisan test --parallel",
         "check-style": "./vendor/bin/pint --test --dirty",
-        "fix-style": "./vendor/bin/pint --dirty"
+        "fix-style": "./vendor/bin/pint --dirty",
+        "lint": [
+            "rector",
+            "pint --parallel --dirty",
+            "bun run lint-fix"
+        ],
+        "test:lint": [
+            "pint --parallel --test",
+            "rector --dry-run",
+            "bun run lint"
+        ],
+        "test:types": "phpstan",
+        "test:unit": "pest --parallel",
+        "test": [
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "bunx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"bun run dev\" --names=server,queue,logs,vite --kill-others"
+        ]
     }
 }

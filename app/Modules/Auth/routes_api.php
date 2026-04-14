@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Modules\Auth\Actions\ForgotPassword;
 use App\Modules\Auth\Actions\GetCurrentUser;
 use App\Modules\Auth\Actions\Login;
@@ -10,8 +12,8 @@ use App\Modules\Auth\Actions\ResetPassword;
 use App\Modules\Auth\Actions\VerifyEmail;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('auth')->group(function () {
-    Route::withoutMiddleware('auth:sanctum')->group(function () {
+Route::prefix('auth')->group(function (): void {
+    Route::withoutMiddleware('auth:sanctum')->group(function (): void {
 
         Route::post('login', Login::class)->name('login');
         Route::post('register', Register::class)->name('register');

@@ -2,8 +2,8 @@
 
 namespace App\Modules\Auth\Actions;
 
-use App\Models\User;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -13,7 +13,7 @@ class VerifyEmail
 {
     use AsController;
 
-    public function handle(Request $request, User $user): JsonResponse
+    public function handle(Request $request, MustVerifyEmail $user): JsonResponse
     {
         if (! URL::hasValidSignature($request)) {
             return response()->json([

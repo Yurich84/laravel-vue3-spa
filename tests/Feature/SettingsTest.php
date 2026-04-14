@@ -2,7 +2,7 @@
 
 use App\Enums\ResponseType;
 
-test('update profile info', function () {
+test('update profile info', function (): void {
     $this->actingAs($this->user)
         ->patchJson(route('profile.update'), [
             'name' => 'Test User',

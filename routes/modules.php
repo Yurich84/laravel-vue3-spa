@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Route;
 
 if (! defined('API_PREFIX')) {
@@ -10,7 +12,7 @@ $modules_folder = app_path('Modules');
 $modules = array_values(
     array_filter(
         scandir($modules_folder),
-        fn ($item) => is_dir($modules_folder.DIRECTORY_SEPARATOR.$item) && ! in_array($item, ['.', '..'])
+        fn ($item): bool => is_dir($modules_folder.DIRECTORY_SEPARATOR.$item) && ! in_array($item, ['.', '..'])
     )
 );
 

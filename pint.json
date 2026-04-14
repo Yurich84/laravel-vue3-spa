@@ -1,5 +1,9 @@
 {
     "preset": "laravel",
+    "notPath": [
+        "tests/TestCase.php",
+        "tmp"
+    ],
     "rules": {
         "class_attributes_separation": false,
         "no_superfluous_phpdoc_tags": false

@@ -2,7 +2,7 @@
 
 use App\Models\User;
 
-test('users can authenticate', function () {
+test('users can authenticate', function (): void {
     $response = $this->postJson(route('login'), [
         'email' => $this->user->email,
         'password' => 'password',
@@ -27,7 +27,7 @@ test('users can authenticate', function () {
     ]);
 });
 
-test('users can not authenticate with invalid password', function () {
+test('users can not authenticate with invalid password', function (): void {
     $user = User::factory()->create();
 
     $this->post('/login', [
@@ -38,14 +38,14 @@ test('users can not authenticate with invalid password', function () {
     $this->assertGuest();
 });
 
-test('fetch the current user', function () {
+test('fetch the current user', function (): void {
     $this->actingAs($this->user)
         ->postJson(route('me'))
         ->assertSuccessful()
         ->assertJsonPath('data.email', $this->user->email);
 });
 
-test('users can logout', function () {
+test('users can logout', function (): void {
 
     $response = $this->postJson(route('login'), [
         'email' => $this->user->email,

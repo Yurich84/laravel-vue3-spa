@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use Lorisleiva\Actions\ActionRequest;
-use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class ResendVerificationEmail
@@ -22,7 +21,7 @@ class ResendVerificationEmail
 
     public function handle(ActionRequest $request): JsonResponse
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::query()->where('email', $request->email)->first();
 
         if (is_null($user)) {
             throw ValidationException::withMessages([

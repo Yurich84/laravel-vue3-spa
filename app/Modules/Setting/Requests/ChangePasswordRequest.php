@@ -2,7 +2,6 @@
 
 namespace App\Modules\Setting\Requests;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -11,26 +10,22 @@ class ChangePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'old_password' => [
                 'string',
                 'required',
-                function ($attribute, $value, $fail) {
+                function ($attribute, $value, $fail): void {
                     if ($value && ! Hash::check($value, auth()->user()->password)) {
                         $fail(__('passwords.password_not_matched', ['attribute' => $attribute]));
                     }
@@ -39,7 +34,7 @@ class ChangePasswordRequest extends FormRequest
             'password' => [
                 'string',
                 'required',
-                function ($attribute, $value, $fail) {
+                function ($attribute, $value, $fail): void {
                     if ($value && Hash::check($value, auth()->user()->password)) {
                         $fail(__('passwords.password_matches_old', ['attribute' => $attribute]));
                     }
@@ -54,7 +49,7 @@ class ChangePasswordRequest extends FormRequest
             'password_confirmation' => [
                 'string',
                 'required',
-                function ($attribute, $value, $fail) {
+                function ($attribute, $value, $fail): void {
                     if ($value != $this->password) {
                         $fail(__('passwords.password_not_matched', ['attribute' => $attribute]));
                     }

@@ -2,9 +2,9 @@
 
 namespace App\Modules\Auth\Actions;
 
+use Illuminate\Contracts\Auth\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Lorisleiva\Actions\Concerns\AsController;
 
 class Logout
@@ -14,8 +14,7 @@ class Logout
     public function handle(Request $request): Response
     {
         $request->user()->currentAccessToken()->delete();
-        Auth::guard('api')->forgetUser();
-        app()->get('auth')->forgetGuards();
+        app()->get(Factory::class)->forgetGuards();
 
         return response()->noContent();
     }
