@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Enums\ResponseType;
-use App\Models\DummySingular;
 
 test('create dummyVariableSingular', function () {
     $this->actingAs($this->user)
