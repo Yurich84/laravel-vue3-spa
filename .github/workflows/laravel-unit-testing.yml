@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Add filter
         uses: dorny/paths-filter@v2
@@ -25,6 +25,7 @@ jobs:
               - 'app/**'
               - 'routes/**'
               - 'tests/**'
+              - 'resources/**'
               - '.github/**'
 
   testing:
@@ -34,14 +35,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.5'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
           coverage: none
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install Bun Dependencies
+        run: bun install
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
