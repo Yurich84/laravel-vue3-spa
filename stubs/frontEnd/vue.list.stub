@@ -128,6 +128,7 @@ import {storeToRefs} from 'pinia'
 import {useDummySingularStore} from '@/modules/dummyVariableSingular/dummyVariableSingularStore'
 import {ElMessage, ElMessageBox} from 'element-plus'
 import BaseFilter from '@/base/components/filters/BaseFilter.vue'
+import _ from 'lodash'
 
 const sortBy = ref('id,asc')
 const filters = ref({search: ''})

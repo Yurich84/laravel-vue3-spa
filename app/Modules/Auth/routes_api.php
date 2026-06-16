@@ -1,32 +1,36 @@
 <?php
 
-use App\Modules\Auth\Controllers\AuthenticatedTokenController;
-use App\Modules\Auth\Controllers\CurrentUserController;
-use App\Modules\Auth\Controllers\NewPasswordController;
-use App\Modules\Auth\Controllers\PasswordResetLinkController;
-use App\Modules\Auth\Controllers\RegisteredUserController;
-use App\Modules\Auth\Controllers\VerifyEmailController;
+declare(strict_types=1);
+
+use App\Modules\Auth\Actions\ForgotPassword;
+use App\Modules\Auth\Actions\GetCurrentUser;
+use App\Modules\Auth\Actions\Login;
+use App\Modules\Auth\Actions\Logout;
+use App\Modules\Auth\Actions\Register;
+use App\Modules\Auth\Actions\ResendVerificationEmail;
+use App\Modules\Auth\Actions\ResetPassword;
+use App\Modules\Auth\Actions\VerifyEmail;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('auth')->group(function () {
-    Route::withoutMiddleware('auth:sanctum')->group(function () {
+Route::prefix('auth')->group(function (): void {
+    Route::withoutMiddleware('auth:sanctum')->group(function (): void {
 
-        Route::post('login', [AuthenticatedTokenController::class, 'store'])->name('login');
-        Route::post('register', [RegisteredUserController::class, 'store'])->name('register');
+        Route::post('login', Login::class)->name('login');
+        Route::post('register', Register::class)->name('register');
 
-        Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('forgot-password');
-        Route::post('reset-password', [NewPasswordController::class, 'store'])->name('reset-password');
+        Route::post('forgot-password', ForgotPassword::class)->name('forgot-password');
+        Route::post('reset-password', ResetPassword::class)->name('reset-password');
 
     });
 
-    Route::post('email/verify/{user}', [VerifyEmailController::class, 'verify'])
+    Route::post('email/verify/{user}', VerifyEmail::class)
         ->middleware(['throttle:6,1'])
         ->name('verification.verify');
 
-    Route::post('email/resend', [VerifyEmailController::class, 'resend'])
+    Route::post('email/resend', ResendVerificationEmail::class)
         ->middleware(['throttle:6,1'])
         ->name('verification.resend');
 
-    Route::post('logout', [AuthenticatedTokenController::class, 'destroy'])->name('logout');
-    Route::post('me', CurrentUserController::class)->name('me');
+    Route::post('logout', Logout::class)->name('logout');
+    Route::post('me', GetCurrentUser::class)->name('me');
 });

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\User;
@@ -9,11 +11,9 @@ class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        User::factory()->state([User::COLUMN_EMAIL => 'user@app.com'])->create();
+        User::factory()->state(['email' => 'user@app.com'])->create();
     }
 }

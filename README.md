@@ -30,14 +30,14 @@ The main goals of the project are:
 
 ## Extensions
 
-- Back-End: [Laravel 11](https://laravel.com/)
+- Back-End: [Laravel 13](https://laravel.com/) + [Laravel Actions](https://laravelactions.com/)
 - Front-End: [Vue3 Composition Api](https://vuejs.org) + [VueRouter](https://router.vuejs.org) + [Pinia](https://pinia.vuejs.org) + [VueI18n](https://kazupon.github.io/vue-i18n/)
-- Login using [Vue-Auth](https://websanova.com/docs/vue-auth/home), [Axios](https://github.com/mzabriskie/axios) and [Sanctum](https://laravel.com/docs/8.x/sanctum).
+- Login using [Axios](https://github.com/mzabriskie/axios) and [Sanctum](https://laravel.com/docs/8.x/sanctum).
 - The api routes, are separate for each module, in **Modules/{ModuleName}/routes_api.php**
-- [ElementPlus](https://element-plus.org/) UI Kit 
+- [ElementPlus](https://element-plus.org/) UI Kit
 - [Lodash](https://lodash.com) js utilities
 - [Day.js](https://dayjs.com) time manipulations
-- [FontAwesome 6](http://fontawesome.io/icons/) icons
+- [FontAwesome 7](http://fontawesome.io/icons/) icons
 
 ## Install
 - `git clone https://github.com/Yurich84/laravel-vue3-spa.git`
@@ -47,7 +47,7 @@ The main goals of the project are:
 - set your DB credentials in `.env`
 - `php artisan key:generate`
 - `php artisan migrate`
-- `yarn install`
+- `bun install`
 
 ## Testing
 
@@ -55,7 +55,7 @@ The main goals of the project are:
 `php artisan test`
 
 ## Usage
-- `npm run dev` for hot reloading
+- `bun run dev` for hot reloading
 - `php artisan serve` and go [localhost:8000](http://localhost:8000)
 - Create new user and login.
 
@@ -80,8 +80,12 @@ This will create:
 │
 ├── routes_api.php
 │
-├── Controllers/
-│   └── {ModuleName}Controller.php
+├── Actions/
+│   ├── {ModuleName}Index.php
+│   ├── {ModuleName}Store.php
+│   ├── {ModuleName}Show.php
+│   ├── {ModuleName}Update.php
+│   └── {ModuleName}Destroy.php
 │
 ├── Requests/
 │   └── {ModuleName}Request.php

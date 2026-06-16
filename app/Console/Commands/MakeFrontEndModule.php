@@ -5,13 +5,11 @@ namespace App\Console\Commands;
 use Illuminate\Console\View\Components\Factory;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Stringable;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class MakeFrontEndModule extends MakeModuleCommand
 {
-    /**
-     * MakeFrontEndModule constructor.
-     */
     public function __construct()
     {
         parent::__construct();
@@ -19,21 +17,18 @@ class MakeFrontEndModule extends MakeModuleCommand
         $this->components = new Factory($this->output);
     }
 
-    /**
-     * @var string
-     */
-    private $module_path;
+    private ?string $module_path = null;
 
     /**
      * @param  $module
      *
      * @throws FileNotFoundException
      */
-    protected function create($module)
+    protected function create(Stringable $module)
     {
         $this->files = new Filesystem;
         $this->module = $module;
-        $this->module_path = base_path('resources/js/modules/'.lcfirst($this->module));
+        $this->module_path = base_path('resources/js/modules/'.lcfirst((string) $this->module));
 
         $this->createVueList();
         $this->createVueView();
@@ -48,13 +43,12 @@ class MakeFrontEndModule extends MakeModuleCommand
     /**
      * Create a Vue component file for the module.
      *
-     * @return void
      *
      * @throws FileNotFoundException
      */
-    private function createVueList()
+    private function createVueList(): void
     {
-        $path = $this->module_path."/components/{$this->module}List.vue";
+        $path = $this->module_path.sprintf('/components/%sList.vue', $this->module);
 
         if ($this->alreadyExists($path)) {
             $this->components->error('VueList Component already exists!');
@@ -70,13 +64,12 @@ class MakeFrontEndModule extends MakeModuleCommand
     /**
      * Create a Vue component file for the module.
      *
-     * @return void
      *
      * @throws FileNotFoundException
      */
-    private function createVueView()
+    private function createVueView(): void
     {
-        $path = $this->module_path."/components/{$this->module}View.vue";
+        $path = $this->module_path.sprintf('/components/%sView.vue', $this->module);
 
         if ($this->alreadyExists($path)) {
             $this->components->error('VueView Component already exists!');
@@ -92,13 +85,12 @@ class MakeFrontEndModule extends MakeModuleCommand
     /**
      * Create a Vue component file for the module.
      *
-     * @return void
      *
      * @throws FileNotFoundException
      */
-    private function createVueForm()
+    private function createVueForm(): void
     {
-        $path = $this->module_path."/components/{$this->module}Form.vue";
+        $path = $this->module_path.sprintf('/components/%sForm.vue', $this->module);
 
         if ($this->alreadyExists($path)) {
             $this->components->error('VueForm Component already exists!');
@@ -114,14 +106,13 @@ class MakeFrontEndModule extends MakeModuleCommand
     /**
      * Create a Vue component file for the module.
      *
-     * @return void
      *
      * @throws FileNotFoundException
      */
-    private function createStore()
+    private function createStore(): void
     {
         $moduleLC = lcfirst($this->module);
-        $path = $this->module_path."/{$moduleLC}Store.js";
+        $path = $this->module_path.sprintf('/%sStore.js', $moduleLC);
 
         if ($this->alreadyExists($path)) {
             $this->components->error('Store already exists!');
@@ -137,11 +128,10 @@ class MakeFrontEndModule extends MakeModuleCommand
     /**
      * Create a Vue component file for the module.
      *
-     * @return void
      *
      * @throws FileNotFoundException
      */
-    private function createRoutes()
+    private function createRoutes(): void
     {
         $path = $this->module_path.'/routes.js';
 
@@ -159,14 +149,13 @@ class MakeFrontEndModule extends MakeModuleCommand
     /**
      * Create a Vue component file for the module.
      *
-     * @return void
      *
      * @throws FileNotFoundException
      */
-    private function createApi()
+    private function createApi(): void
     {
         $moduleLC = lcfirst($this->module);
-        $path = $this->module_path."/{$moduleLC}Api.js";
+        $path = $this->module_path.sprintf('/%sApi.js', $moduleLC);
 
         if ($this->alreadyExists($path)) {
             $this->components->error('Api file already exists!');

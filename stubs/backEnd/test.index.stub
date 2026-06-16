@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Models\DummySingular;
+
+test('list dummyVariableSingular', function (): void {
+    $dummyVariablePlural = DummySingular::factory()->count(2)->create()->map(fn ($dummyVariableSingular) => $dummyVariableSingular->only(['id', 'name']));
+
+    $this->actingAs($this->user)
+        ->getJson(route('dummyVariablePlural.index'))
+        ->assertSuccessful()
+        ->assertJson([
+            'data' => $dummyVariablePlural->all(),
+        ])
+        ->assertJsonStructure([
+            'data' => [
+                '*' => ['id', 'name'],
+            ],
+            'links',
+            'meta',
+        ]);
+});

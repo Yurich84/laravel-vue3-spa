@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Enums\ResponseType;
+use App\Models\DummySingular;
+
+test('update dummyVariableSingular', function (): void {
+    $dummyVariableSingular = DummySingular::factory()->create();
+
+    $this->actingAs($this->user)
+        ->putJson(route('dummyVariablePlural.update', $dummyVariableSingular->id), [
+            'name' => 'Updated dummyVariableSingular',
+        ])
+        ->assertSuccessful()
+        ->assertJson(['type' => ResponseType::Success->value]);
+
+    $this->assertDatabaseHas('dummyVariablePlural', [
+        'id' => $dummyVariableSingular->id,
+        'name' => 'Updated dummyVariableSingular',
+    ]);
+});

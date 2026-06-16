@@ -1,5 +1,5 @@
 import dayjs from '@/plugins/day'
-import {DATE_FORMAT, DATETIME_DB_FORMAT, DATETIME_FORMAT} from '@/base/constants/time.constants'
+import {DATE_FORMAT, DATETIME_FORMAT} from '@/base/constants/time.constants'
 
 export default {
     capitalize: function (value) {
@@ -11,9 +11,11 @@ export default {
         return Number(number).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\'')
     },
     date: function (datetime) {
-        return dayjs(datetime).isValid() ? dayjs(datetime, DATETIME_DB_FORMAT).format(DATE_FORMAT) : ''
+        const d = dayjs(datetime)
+        return d.isValid() ? d.format(DATE_FORMAT) : ''
     },
     time: function (datetime) {
-        return dayjs(datetime).isValid() ? dayjs(datetime, DATETIME_DB_FORMAT).format(DATETIME_FORMAT) : ''
+        const d = dayjs(datetime)
+        return d.isValid() ? d.format(DATETIME_FORMAT) : ''
     },
 }

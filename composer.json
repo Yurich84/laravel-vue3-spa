@@ -1,30 +1,34 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The skeleton application for the Laravel and Vue3.",
     "keywords": [
         "framework",
         "laravel"
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
-        "ext-json": "*",
-        "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^v12.16",
+        "php": "^8.5",
+        "laravel/framework": "^v13.4",
         "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^v3.0",
+        "lorisleiva/laravel-actions": "^2.10",
+        "nunomaduro/essentials": "^1.2"
     },
     "require-dev": {
+        "driftingly/rector-laravel": "^2.3",
         "fakerphp/faker": "^1.23",
-        "laravel/breeze": "^2.0",
-        "laravel/pint": "^1.13",
-        "laravel/sail": "^1.29",
+        "laravel/boost": "^2.4",
+        "laravel/breeze": "^v2.3",
+        "laravel/pail": "^1.2",
+        "laravel/pint": "^1.29",
+        "laravel/sail": "^v1.56",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^v8.8.0",
-        "pestphp/pest": "v3.8.2",
-        "pestphp/pest-plugin-laravel": "^v3.2.0",
-        "spatie/laravel-ignition": "^2.9.1"
+        "nunomaduro/collision": "^v8.9",
+        "nunomaduro/pao": "^0.1.5",
+        "pestphp/pest": "^5.0",
+        "pestphp/pest-plugin-laravel": "^5.0",
+        "rector/rector": "^2.3.9"
     },
     "config": {
         "optimize-autoloader": true,
@@ -76,8 +80,26 @@
             "@php artisan config:cache",
             "@php artisan route:cache"
         ],
-        "test": "@php artisan test --parallel",
         "check-style": "./vendor/bin/pint --test --dirty",
-        "fix-style": "./vendor/bin/pint --dirty"
+        "fix-style": "./vendor/bin/pint --dirty",
+        "lint": [
+            "rector",
+            "pint --parallel --dirty",
+            "bun run lint-fix"
+        ],
+        "test:lint": [
+            "pint --parallel --test",
+            "rector --dry-run",
+            "bun run lint"
+        ],
+        "test:unit": "pest --parallel",
+        "test": [
+            "@test:lint",
+            "@test:unit"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "bunx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"bun run dev\" --names=server,queue,logs,vite --kill-others"
+        ]
     }
 }

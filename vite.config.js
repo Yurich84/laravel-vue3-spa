@@ -28,14 +28,12 @@ export default defineConfig({
             },
         })
     ],
-    resolve: {
-        alias: [
-            {
-                // this is required for the SCSS modules
-                find: /^~(.*)$/,
-                replacement: '$1',
+    css: {
+        preprocessorOptions: {
+            scss: {
+                loadPaths: ['node_modules'],
             },
-        ],
+        },
     },
     build: {
         target: 'esnext',

@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DummyRootNamespaceModules\DummySingular\Actions;
+
+use DummyRootNamespaceModels\DummySingular;
+use DummyRootNamespaceModules\DummySingular\Resources\DummySingularResource;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Lorisleiva\Actions\Concerns\AsController;
+
+class DummySingularIndex
+{
+    use AsController;
+
+    public function handle(Request $request): AnonymousResourceCollection
+    {
+        [$column, $order] = explode(',', (string) $request->input('sortBy', 'id,asc'));
+        $pageSize = (int) $request->input('pageSize', 10);
+
+        $resource = DummySingular::query()
+            ->when($request->filled('search'), function (Builder $q) use ($request): void {
+                $q->where('name', 'like', '%'.$request->search.'%');
+            })
+            ->orderBy($column, $order)->paginate($pageSize);
+
+        return DummySingularResource::collection($resource);
+    }
+}

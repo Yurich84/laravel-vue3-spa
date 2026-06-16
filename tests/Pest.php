@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+declare(strict_types=1);
+
 use Tests\TestCase;
 
 /*
@@ -17,7 +18,7 @@ use Tests\TestCase;
 uses(
     TestCase::class,
     // RefreshDatabase::class,
-)->in('Feature');
+)->in('Feature', '../app/Modules');
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,7 @@ uses(
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
-});
+expect()->extend('toBeOne', fn () => $this->toBe(1));
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +44,7 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function something(): void
 {
     // ..
 }

@@ -12,12 +12,7 @@ use Illuminate\Support\Stringable;
 
 class MakeModuleCommand extends Command
 {
-    /**
-     * The filesystem instance.
-     *
-     * @var Filesystem
-     */
-    protected $files;
+    protected Filesystem $files;
 
     /**
      * The name and signature of the console command.
@@ -33,28 +28,15 @@ class MakeModuleCommand extends Command
      */
     protected $description = 'Create a new Module for front-end and back-end';
 
-    /** @var Stringable */
-    protected $module;
-
-    /**
-     * Create a new command instance.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected Stringable $module;
 
     /**
      * Execute the console command.
      *
-     * @param  Filesystem  $files
-     * @param  MakeFrontEndModule  $frontEndModule
-     * @param  MakeBackEndModule  $backEndModule
-     * @return void
      *
      * @throws FileNotFoundException
      */
-    public function handle(Filesystem $files, MakeFrontEndModule $frontEndModule, MakeBackEndModule $backEndModule)
+    public function handle(Filesystem $files, MakeFrontEndModule $frontEndModule, MakeBackEndModule $backEndModule): void
     {
         $this->files = $files;
 
@@ -75,10 +57,8 @@ class MakeModuleCommand extends Command
 
     /**
      * Create a model file for the module.
-     *
-     * @return void
      */
-    protected function createModel()
+    protected function createModel(): void
     {
         $this->call('make:model', [
             'name' => $this->module,
@@ -87,38 +67,34 @@ class MakeModuleCommand extends Command
 
     /**
      * Create a migration file for the module.
-     *
-     * @return void
      */
-    protected function createMigration()
+    protected function createMigration(): void
     {
         $table = $this->module->plural()->snake();
 
         try {
             $this->call('make:migration', [
-                'name' => "create_{$table}_table",
+                'name' => sprintf('create_%s_table', $table),
                 '--create' => $table,
             ]);
-        } catch (Exception $e) {
-            $this->error($e->getMessage());
+        } catch (Exception $exception) {
+            $this->error($exception->getMessage());
         }
     }
 
     /**
      * Create a factory file for the module.
-     *
-     * @return void
      */
-    protected function createFactory()
+    protected function createFactory(): void
     {
         $this->call('make:factory', [
             'name' => $this->module.'Factory',
-            '--model' => "$this->module",
+            '--model' => $this->module,
         ]);
     }
 
     /**
-     * Create a test file for the module.
+     * Create test files for the module.
      *
      * @return void
      *
@@ -126,16 +102,20 @@ class MakeModuleCommand extends Command
      */
     protected function createTest()
     {
-        $path = base_path('tests/Feature/'.$this->module.'Test.php');
+        $actions = ['Index', 'Store', 'Show', 'Update', 'Destroy'];
 
-        if ($this->alreadyExists($path)) {
-            $this->error('Test file already exists!');
-        } else {
-            $stub = (new Filesystem)->get(base_path('stubs/test.stub'));
+        foreach ($actions as $action) {
+            $path = app_path(sprintf('Modules/%s/Tests/%s%sTest.php', $this->module, $this->module, $action));
 
-            $this->createFileWithStub($stub, $path);
+            if ($this->alreadyExists($path)) {
+                $this->error(sprintf('%s%sTest already exists!', $this->module, $action));
+            } else {
+                $stub = (new Filesystem)->get(base_path('stubs/backEnd/test.'.strtolower($action).'.stub'));
 
-            $this->components->info('Tests created successfully.');
+                $this->createFileWithStub($stub, $path);
+
+                $this->components->info(sprintf('%s%sTest created successfully.', $this->module, $action));
+            }
         }
     }
 

@@ -3,11 +3,11 @@
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-test('new user can register', function () {
+test('new user can register', function (): void {
     $response = $this->postJson(route('register'), [
-        User::COLUMN_NAME => 'Test User',
-        User::COLUMN_EMAIL => 'test@test.app',
-        User::COLUMN_PASSWORD => 'Pa$$w0rd',
+        'name' => 'Test User',
+        'email' => 'test@test.app',
+        'password' => 'Pa$$w0rd',
         'password_confirmation' => 'Pa$$w0rd',
     ])
         ->assertSuccessful();
@@ -19,12 +19,12 @@ test('new user can register', function () {
     }
 
     $this->assertDatabaseHas('users', [
-        User::COLUMN_NAME => 'Test User',
-        User::COLUMN_EMAIL => 'test@test.app',
+        'name' => 'Test User',
+        'email' => 'test@test.app',
     ]);
 });
 
-test('new user cannot register with existing email', function () {
+test('new user cannot register with existing email', function (): void {
     User::factory()->create(['email' => 'test@test.app']);
 
     $this->postJson(route('register'), [

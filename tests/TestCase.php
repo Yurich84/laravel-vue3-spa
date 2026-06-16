@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use App\Models\User;
@@ -13,8 +15,7 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
     use RefreshDatabase;
 
-    /** @var User */
-    protected $user;
+    protected User $user;
 
     protected function setUp(): void
     {
@@ -23,7 +24,7 @@ abstract class TestCase extends BaseTestCase
         $this->user = User::factory()->create();
     }
 
-    public function actingAs(Authenticatable $user, $driver = null)
+    public function actingAs(Authenticatable $user, $guard = null): TestCase|static
     {
         Sanctum::actingAs($user);
 

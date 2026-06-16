@@ -1,15 +1,15 @@
 <?php
 
-use App\Modules\Core\Controllers\Controller;
+use App\Enums\ResponseType;
 
-test('update profile info', function () {
+test('update profile info', function (): void {
     $this->actingAs($this->user)
         ->patchJson(route('profile.update'), [
             'name' => 'Test User',
             'email' => 'test@test.app',
         ])
         ->assertSuccessful()
-        ->assertJson(['type' => Controller::RESPONSE_TYPE_SUCCESS]);
+        ->assertJson(['type' => ResponseType::Success->value]);
 
     $this->assertDatabaseHas('users', [
         'id' => $this->user->id,

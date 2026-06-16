@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Enums\ResponseType;
+
+test('create dummyVariableSingular', function (): void {
+    $this->actingAs($this->user)
+        ->postJson(route('dummyVariablePlural.store'), [
+            'name' => 'Lorem',
+        ])
+        ->assertSuccessful()
+        ->assertJson(['type' => ResponseType::Success->value]);
+
+    $this->assertDatabaseHas('dummyVariablePlural', [
+        'name' => 'Lorem',
+    ]);
+});
